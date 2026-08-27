@@ -1,2 +1,2 @@
-# Gerador-de-curr-culos
+# Gerador-curriculo
 Projeto da faculdade 

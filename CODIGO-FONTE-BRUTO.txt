@@ -1,0 +1,3766 @@
+CÓDIGO-FONTE BRUTO · Gerador de Currículo · Tech-ZL (ADS 2026)
+Instantâneo gerado em 14/11/2026. Os arquivos do projeto são a fonte oficial.
+Conteúdo: index.html, style.css, script.js, empresa.html, empresa.css, empresa.js
+
+==============================================================================
+ARQUIVO: index.html  (220 linhas)
+==============================================================================
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador de Currículo | Tech-ZL · ADS 2026</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
+    <!-- ========== NAVBAR ========== -->
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo">
+          TECH-ZL <span>Gerador de Currículo</span>
+        </a>
+        <nav class="navbar__links">
+          <a href="#formulario">Formulário</a>
+          <a href="#preview">Preview</a>
+          <a href="empresa.html" class="navbar__link--destaque">Para Empresas →</a>
+          <button class="btn btn--outline" id="btn-exportar-pdf">Exportar PDF ↓</button>
+          <button class="btn btn--primary" id="btn-exportar">Exportar HTML ↓</button>
+        </nav>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="navbar__mobile" id="mobile-menu">
+        <a href="#formulario" onclick="fecharMenu()">Formulário</a>
+        <a href="#preview" onclick="fecharMenu()">Preview</a>
+        <a href="empresa.html" onclick="fecharMenu()">Para Empresas →</a>
+        <button class="btn btn--outline" onclick="exportarPDF(); fecharMenu()">Exportar PDF ↓</button>
+        <button class="btn btn--primary" onclick="exportarCV(); fecharMenu()">Exportar HTML ↓</button>
+      </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+      <div class="hero__texto">
+        <p class="hero__eyebrow">Gerador de Currículo Gratuito · ADS 2026</p>
+        <h1 class="hero__titulo">
+          Monte seu <span class="hero__destaque">Currículo</span>
+          profissional
+        </h1>
+        <p class="hero__sub">
+          Preencha o formulário, visualize em tempo real e exporte em
+          <strong>PDF</strong> ou HTML — pronto para usar.
+        </p>
+        <div class="hero__acoes">
+          <a href="#formulario" class="btn btn--primary btn--lg">Começar agora →</a>
+          <a href="#preview" class="btn btn--ghost btn--lg">Ver preview</a>
+        </div>
+      </div>
+      <div class="hero__visual" aria-hidden="true">
+        <div class="hero__circulo hero__circulo--1"></div>
+        <div class="hero__circulo hero__circulo--2"></div>
+        <div class="hero__circulo hero__circulo--3"></div>
+        <div class="hero__tag hero__tag--1">Currículo</div>
+        <div class="hero__tag hero__tag--2">LinkedIn</div>
+        <div class="hero__tag hero__tag--3">Portfólio</div>
+        <div class="hero__tag hero__tag--4">Carreira</div>
+      </div>
+    </section>
+
+    <!-- ========== MAIN: FORM + PREVIEW ========== -->
+    <main class="main" id="formulario">
+
+      <!-- PAINEL FORMULÁRIO -->
+      <aside class="painel-form">
+        <div class="painel-form__topo">
+          <h2 class="painel-form__titulo">Seus dados</h2>
+          <span class="painel-form__hint">Edite e veja ao vivo →</span>
+        </div>
+        <div class="progresso">
+          <div class="progresso__trilho">
+            <div class="progresso__barra" id="progresso-barra" role="progressbar" aria-label="Preenchimento do currículo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+          </div>
+          <span class="progresso__texto" id="progresso-texto">0% completo</span>
+        </div>
+        <p id="status-salvamento" class="status-salvamento" role="status" aria-live="polite" hidden></p>
+
+        <!-- ABAS -->
+        <div class="abas" role="tablist">
+          <button class="aba aba--ativa" data-aba="pessoal" role="tab">Pessoal</button>
+          <button class="aba" data-aba="experiencia" role="tab">Experiência</button>
+          <button class="aba" data-aba="educacao" role="tab">Educação</button>
+          <button class="aba" data-aba="extras" role="tab">Extras</button>
+        </div>
+
+        <!-- ABA PESSOAL -->
+        <div class="aba-conteudo aba-conteudo--ativa" id="aba-pessoal" role="tabpanel">
+          <div class="campo">
+            <label for="nome">Nome completo <span class="obrig">*</span></label>
+            <input type="text" id="nome" placeholder="Ex: Maria Silva" />
+          </div>
+          <div class="campo">
+            <label for="cargo">Cargo / Título profissional</label>
+            <input type="text" id="cargo" placeholder="Ex: Desenvolvedor Front-End | Analista de Sistemas" />
+          </div>
+          <div class="campo-linha">
+            <div class="campo">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" placeholder="seu@email.com" />
+            </div>
+            <div class="campo">
+              <label for="telefone">Telefone</label>
+              <input type="tel" id="telefone" placeholder="(11) 99999-0000" />
+            </div>
+          </div>
+          <div class="campo-linha">
+            <div class="campo">
+              <label for="cidade">Cidade / Estado</label>
+              <input type="text" id="cidade" placeholder="São Paulo, SP" />
+            </div>
+            <div class="campo">
+              <label for="linkedin">LinkedIn</label>
+              <input type="text" id="linkedin" placeholder="linkedin.com/in/perfil" />
+            </div>
+          </div>
+          <div class="campo-linha">
+            <div class="campo">
+              <label for="github">GitHub</label>
+              <input type="text" id="github" placeholder="github.com/usuario" />
+            </div>
+            <div class="campo">
+              <label for="instagram">Instagram</label>
+              <input type="text" id="instagram" placeholder="instagram.com/perfil" />
+            </div>
+          </div>
+          <div class="campo">
+            <label for="resumo">Resumo profissional</label>
+            <textarea id="resumo" rows="5" placeholder="Descreva seu perfil, objetivos e diferenciais profissionais..."></textarea>
+          </div>
+        </div>
+
+        <!-- ABA EXPERIÊNCIA -->
+        <div class="aba-conteudo" id="aba-experiencia" role="tabpanel">
+          <div id="lista-experiencias"></div>
+          <button class="btn-adicionar" onclick="adicionarExperiencia()">
+            <span class="btn-adicionar__icone">+</span>
+            Adicionar experiência
+          </button>
+        </div>
+
+        <!-- ABA EDUCAÇÃO -->
+        <div class="aba-conteudo" id="aba-educacao" role="tabpanel">
+          <div id="lista-educacao"></div>
+          <button class="btn-adicionar" onclick="adicionarEducacao()">
+            <span class="btn-adicionar__icone">+</span>
+            Adicionar formação
+          </button>
+          <div class="campo" style="margin-top: 20px;">
+            <label for="cursos">Cursos e certificados <small>(um por linha)</small></label>
+            <textarea id="cursos" rows="4" placeholder="Excel Avançado&#10;Gestão de Projetos&#10;Power BI&#10;Inglês Intermediário"></textarea>
+          </div>
+        </div>
+
+        <!-- ABA EXTRAS -->
+        <div class="aba-conteudo" id="aba-extras" role="tabpanel">
+          <div class="campo">
+            <label for="habilidades">Habilidades técnicas <small>(separadas por vírgula)</small></label>
+            <input type="text" id="habilidades" placeholder="Pacote Office, Excel, Power BI, SAP, Git" />
+          </div>
+          <div class="campo">
+            <label for="idiomas">Idiomas <small>(separados por vírgula)</small></label>
+            <input type="text" id="idiomas" placeholder="Português (Nativo), Inglês (Intermediário)" />
+          </div>
+          <div class="campo">
+            <label for="mensagem">Carta de apresentação / Por que devo ser contratado?</label>
+            <textarea id="mensagem" rows="5" placeholder="Descreva seus diferenciais e motivação para a vaga..."></textarea>
+          </div>
+        </div>
+
+        <!-- AÇÕES (botões gerados a partir de botoes.json) -->
+        <!-- BOTOES:INICIO (gerado por tools/gerar_botoes.py - nao edite) -->
+<div class="form-nav">
+  <button type="button" class="btn btn--outline" data-acao="anterior">← Anterior</button>
+  <button type="button" class="btn btn--primary" data-acao="proximo">Próximo →</button>
+</div>
+<div class="form-acoes">
+  <button type="button" class="btn btn--ghost" data-acao="limpar" title="Apaga todos os dados salvos neste navegador">Limpar tudo</button>
+  <button type="button" class="btn btn--outline" data-acao="pdf" title="Baixar currículo em PDF">PDF ↓</button>
+  <button type="button" class="btn btn--primary" data-acao="html" title="Baixar currículo em HTML">HTML ↓</button>
+</div>
+<!-- BOTOES:FIM -->
+      </aside>
+
+      <!-- PAINEL PREVIEW -->
+      <section class="painel-preview" id="preview">
+        <div class="painel-preview__topo">
+          <h2 class="painel-preview__titulo">Preview em tempo real</h2>
+          <span class="badge-live">
+            <span class="badge-live__ponto"></span>
+            Ao vivo
+          </span>
+        </div>
+        <div class="cv-moldura">
+          <div id="cv-preview" class="cv">
+            <!-- Gerado pelo script.js -->
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <p>Gerador de Currículo · 2026</p>
+      <p class="footer__sub">HTML · CSS · JavaScript · ADS 2026</p>
+    </footer>
+
+    <!-- html2pdf.js para exportação em PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+==============================================================================
+ARQUIVO: style.css  (938 linhas)
+==============================================================================
+/* ================================================
+   GERADOR DE CURRÍCULO — TECH-ZL · ADS 2026
+   Paleta Formal: #1B3A6B · #2563EB · #F0F4F8 · #4B5563
+   ================================================ */
+
+/* ---- RESET ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- VARIÁVEIS — Paleta Formal ---- */
+:root {
+  --azul-pri:    #1B3A6B;   /* Navy azul — cor principal */
+  --azul-sec:    #2563EB;   /* Royal blue — acento / hover */
+  --azul-esc:    #142B52;   /* Navy escuro — estado ativo */
+  --azul-tag:    #DBEAFE;   /* Azul muito claro — fundo de tags */
+  --fundo:       #F0F4F8;   /* Fundo da página */
+  --cinza:       #4B5563;   /* Cinza texto */
+  --cinza-claro: #9CA3AF;   /* Cinza claro */
+  --cinza-borda: #D1D5DB;   /* Borda */
+  --cinza-fraco: #F3F4F6;   /* Fundo suave */
+  --preto:       #111827;   /* Quase preto */
+  --preto-soft:  #1F2937;   /* Preto suave */
+  --branco:      #FFFFFF;
+
+  --fonte-titulo: 'Playfair Display', Georgia, serif;
+  --fonte-corpo:  'Inter', 'Segoe UI', sans-serif;
+
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+
+  --sombra-card: 0 2px 20px rgba(27, 58, 107, 0.09);
+  --sombra-btn:  0 4px 16px rgba(27, 58, 107, 0.28);
+  --trans:       0.22s ease;
+}
+
+/* ---- BASE ---- */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--fonte-corpo);
+  background-color: var(--fundo);
+  color: var(--preto);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ---- SCROLLBAR ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cinza-fraco); }
+::-webkit-scrollbar-thumb { background: var(--azul-pri); border-radius: 4px; }
+
+/* ================================================
+   NAVBAR
+   ================================================ */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--cinza-borda);
+  box-shadow: 0 1px 12px rgba(27, 58, 107, 0.07);
+}
+
+.navbar__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__logo {
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  color: var(--azul-pri);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+}
+
+.navbar__logo span {
+  font-family: var(--fonte-corpo);
+  font-size: 12px;
+  color: var(--cinza);
+  font-weight: 400;
+  margin-left: 8px;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.navbar__links a {
+  color: var(--cinza);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color var(--trans);
+}
+
+.navbar__links a:hover { color: var(--azul-sec); }
+
+.navbar__link--destaque {
+  color: var(--azul-pri) !important;
+  font-weight: 600 !important;
+  border: 1.5px solid var(--azul-tag);
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--azul-tag);
+  transition: all var(--trans) !important;
+}
+
+.navbar__link--destaque:hover {
+  background: var(--azul-pri) !important;
+  color: var(--branco) !important;
+  border-color: var(--azul-pri) !important;
+}
+
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.navbar__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--preto);
+  border-radius: 2px;
+  transition: var(--trans);
+}
+
+/* Mobile menu */
+.navbar__mobile {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 28px 18px;
+  background: var(--branco);
+  border-top: 1px solid var(--cinza-borda);
+}
+
+.navbar__mobile.aberto { display: flex; }
+
+.navbar__mobile a {
+  color: var(--cinza);
+  text-decoration: none;
+  font-size: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cinza-fraco);
+  font-weight: 500;
+}
+
+.navbar__mobile .btn { margin-top: 8px; justify-content: center; }
+
+/* ================================================
+   BOTÕES
+   ================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--fonte-corpo);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all var(--trans);
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+.btn--primary {
+  background: var(--azul-pri);
+  color: var(--branco);
+  box-shadow: var(--sombra-btn);
+}
+
+.btn--primary:hover {
+  background: var(--azul-esc);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 58, 107, 0.38);
+}
+
+.btn--primary:active { transform: translateY(0); }
+
+.btn--outline {
+  background: transparent;
+  color: var(--azul-pri);
+  border: 1.5px solid var(--azul-pri);
+}
+
+.btn--outline:hover {
+  background: var(--azul-tag);
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--cinza);
+  border: 1.5px solid var(--cinza-borda);
+}
+
+.btn--ghost:hover {
+  border-color: var(--azul-sec);
+  color: var(--azul-sec);
+  background: var(--azul-tag);
+}
+
+.btn--lg {
+  padding: 14px 32px;
+  font-size: 15px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ================================================
+   HERO
+   ================================================ */
+.hero {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 72px 28px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.hero__eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--azul-pri);
+  background: var(--azul-tag);
+  padding: 5px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.hero__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(32px, 4.5vw, 52px);
+  line-height: 1.12;
+  color: var(--preto);
+  margin-bottom: 16px;
+}
+
+.hero__destaque { color: var(--azul-sec); }
+
+.hero__sub {
+  font-size: 16px;
+  color: var(--cinza);
+  max-width: 480px;
+  margin-bottom: 32px;
+  line-height: 1.75;
+}
+
+.hero__acoes {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Elemento visual do hero */
+.hero__visual {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  flex-shrink: 0;
+}
+
+.hero__circulo { position: absolute; border-radius: 50%; }
+
+.hero__circulo--1 {
+  width: 200px; height: 200px;
+  background: var(--azul-tag);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: flutuar 4s ease-in-out infinite;
+}
+
+.hero__circulo--2 {
+  width: 140px; height: 140px;
+  background: rgba(37, 99, 235, 0.12);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: flutuar 4s ease-in-out infinite reverse;
+}
+
+.hero__circulo--3 {
+  width: 80px; height: 80px;
+  background: rgba(27, 58, 107, 0.18);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes flutuar {
+  0%, 100% { transform: translate(-50%, -52%); }
+  50%       { transform: translate(-50%, -48%); }
+}
+
+.hero__tag {
+  position: absolute;
+  background: var(--branco);
+  color: var(--azul-pri);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(27, 58, 107, 0.14);
+  border: 1.5px solid var(--azul-tag);
+  letter-spacing: 0.03em;
+  animation: flutuar 3s ease-in-out infinite;
+}
+
+.hero__tag--1 { top: 16px;    left: 20px;  animation-delay: 0s; }
+.hero__tag--2 { top: 16px;    right: 10px; animation-delay: 0.5s; }
+.hero__tag--3 { bottom: 36px; left: 10px;  animation-delay: 1s; }
+.hero__tag--4 { bottom: 36px; right: 20px; animation-delay: 1.5s; }
+
+/* ================================================
+   LAYOUT PRINCIPAL
+   ================================================ */
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 28px 72px;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* ================================================
+   PAINEL FORMULÁRIO
+   ================================================ */
+.painel-form {
+  background: var(--branco);
+  border: 1px solid var(--cinza-borda);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  position: sticky;
+  top: 78px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  box-shadow: var(--sombra-card);
+}
+
+.painel-form__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1.5px solid var(--cinza-fraco);
+}
+
+.painel-form__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  color: var(--preto);
+}
+
+.painel-form__hint {
+  font-size: 11px;
+  color: var(--azul-pri);
+  font-weight: 600;
+  background: var(--azul-tag);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* ---- INDICADOR DE SALVAMENTO ---- */
+.status-salvamento {
+  font-size: 12px;
+  font-weight: 600;
+  margin: -8px 0 16px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--cinza);
+  background: var(--cinza-fraco);
+  transition: background var(--trans), color var(--trans);
+}
+.status-salvamento[hidden] { display: none; }
+.status-salvamento[data-estado="salvo"] { color: #166534; background: #F0FDF4; }
+.status-salvamento[data-estado="erro"]  { color: #991B1B; background: #FEF2F2; }
+
+/* ---- ABAS ---- */
+.abas {
+  display: flex;
+  gap: 3px;
+  background: var(--cinza-fraco);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  margin-bottom: 20px;
+}
+
+.aba {
+  flex: 1;
+  padding: 8px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cinza);
+  background: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all var(--trans);
+  font-family: var(--fonte-corpo);
+  letter-spacing: 0.01em;
+}
+
+.aba:hover { color: var(--azul-sec); }
+
+.aba--ativa {
+  background: var(--azul-pri);
+  color: var(--branco);
+  box-shadow: 0 2px 8px rgba(27, 58, 107, 0.25);
+}
+
+.aba-conteudo { display: none; }
+.aba-conteudo--ativa { display: block; }
+
+/* ---- CAMPOS ---- */
+.campo { margin-bottom: 14px; }
+
+.campo label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--preto-soft);
+  margin-bottom: 5px;
+  letter-spacing: 0.02em;
+}
+
+.campo label small {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--cinza-claro);
+}
+
+.obrig { color: var(--azul-sec); }
+
+.campo input,
+.campo textarea,
+.campo select {
+  width: 100%;
+  background: var(--fundo);
+  border: 1.5px solid var(--cinza-borda);
+  border-radius: var(--radius-sm);
+  padding: 10px 13px;
+  font-size: 13px;
+  color: var(--preto);
+  font-family: var(--fonte-corpo);
+  transition: border-color var(--trans), box-shadow var(--trans);
+  outline: none;
+  resize: vertical;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder { color: var(--cinza-claro); }
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+  border-color: var(--azul-sec);
+  background: var(--branco);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.campo-linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* ---- CARDS DE ITEM (exp / edu) ---- */
+.item-card {
+  background: var(--fundo);
+  border: 1.5px solid var(--cinza-borda);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 12px;
+  transition: border-color var(--trans);
+}
+
+.item-card:hover { border-color: var(--azul-sec); }
+
+.item-card__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.item-card__num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--azul-pri);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.item-card__rem {
+  background: none;
+  border: 1.5px solid var(--cinza-borda);
+  border-radius: var(--radius-sm);
+  color: var(--cinza-claro);
+  font-size: 11px;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: all var(--trans);
+  font-family: var(--fonte-corpo);
+  font-weight: 500;
+}
+
+.item-card__rem:hover {
+  border-color: #DC2626;
+  color: #DC2626;
+  background: #FEF2F2;
+}
+
+/* ---- BOTÃO ADICIONAR ---- */
+.btn-adicionar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: 2px dashed var(--cinza-borda);
+  border-radius: var(--radius-md);
+  color: var(--cinza);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--trans);
+  font-family: var(--fonte-corpo);
+  margin-top: 4px;
+}
+
+.btn-adicionar__icone {
+  font-size: 20px;
+  color: var(--azul-sec);
+  line-height: 1;
+}
+
+.btn-adicionar:hover {
+  border-color: var(--azul-sec);
+  color: var(--azul-sec);
+  background: var(--azul-tag);
+}
+
+/* ---- AÇÕES DO FORMULÁRIO ---- */
+.form-acoes {
+  display: flex;
+  gap: 8px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1.5px solid var(--cinza-fraco);
+}
+
+.form-acoes .btn { flex: 1; }
+
+/* ================================================
+   PAINEL PREVIEW
+   ================================================ */
+.painel-preview {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--sombra-card);
+}
+
+.painel-preview__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: var(--branco);
+  border: 1px solid var(--cinza-borda);
+  border-bottom: none;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.painel-preview__titulo {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cinza);
+}
+
+.badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #16a34a;
+  background: #F0FDF4;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.06em;
+}
+
+.badge-live__ponto {
+  width: 7px;
+  height: 7px;
+  background: #16a34a;
+  border-radius: 50%;
+  animation: piscar 1.5s ease-in-out infinite;
+}
+
+@keyframes piscar {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.cv-moldura {
+  background: #E5E7EB;
+  padding: 32px 28px;
+  border: 1px solid var(--cinza-borda);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  min-height: 620px;
+}
+
+/* ================================================
+   O CURRÍCULO (preview + exportado)
+   ================================================ */
+.cv {
+  background: var(--branco);
+  color: #1a1a1a;
+  font-family: var(--fonte-corpo);
+  padding: 44px 40px;
+  max-width: 820px;
+  margin: 0 auto;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.10);
+  border-radius: 3px;
+}
+
+/* Cabeçalho */
+.cv__cabecalho {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: start;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 3px solid #111827;
+  position: relative;
+}
+
+.cv__cabecalho::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; left: 0;
+  width: 60px; height: 3px;
+  background: #2563EB;
+  border-radius: 2px;
+}
+
+.cv__nome {
+  font-family: var(--fonte-titulo);
+  font-size: 28px;
+  color: #111827;
+  letter-spacing: -0.3px;
+  line-height: 1.1;
+}
+
+.cv__cargo {
+  font-size: 13px;
+  color: #4B5563;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+.cv__contatos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.cv__contato { font-size: 11px; color: #4B5563; }
+.cv__contato a { color: #1B3A6B; text-decoration: none; }
+
+/* Seções */
+.cv__secao { margin-bottom: 22px; }
+
+.cv__secao-titulo {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #1B3A6B;
+  border-bottom: 1px solid #E5E7EB;
+  padding-bottom: 5px;
+  margin-bottom: 13px;
+}
+
+.cv__resumo { font-size: 12.5px; line-height: 1.75; color: #374151; }
+
+/* Experiência */
+.cv__exp { margin-bottom: 14px; }
+
+.cv__exp-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.cv__exp-empresa { font-size: 13.5px; font-weight: 700; color: #111827; }
+
+.cv__exp-periodo {
+  font-size: 11px;
+  color: #1B3A6B;
+  font-weight: 600;
+  white-space: nowrap;
+  background: #DBEAFE;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.cv__exp-cargo { font-size: 12px; color: #4B5563; margin-top: 2px; font-style: italic; }
+.cv__exp-desc  { font-size: 12px; color: #374151; line-height: 1.65; margin-top: 5px; }
+
+/* Educação */
+.cv__edu { margin-bottom: 12px; }
+.cv__edu-curso   { font-size: 13.5px; font-weight: 700; color: #111827; }
+.cv__edu-inst    { font-size: 12px; color: #4B5563; margin-top: 2px; }
+.cv__edu-periodo { font-size: 11px; color: #1B3A6B; margin-top: 2px; font-weight: 600; }
+
+/* Cursos */
+.cv__cursos { display: flex; flex-wrap: wrap; gap: 7px; }
+
+.cv__curso {
+  font-size: 11px;
+  padding: 4px 12px;
+  background: #EFF6FF;
+  color: #1B3A6B;
+  border-radius: 20px;
+  border: 1px solid #BFDBFE;
+  font-weight: 500;
+}
+
+/* Habilidades + Idiomas */
+.cv__duas-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.cv__habilidades { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.cv__habilidade {
+  font-size: 11px;
+  padding: 4px 11px;
+  background: #1B3A6B;
+  color: #FFFFFF;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.cv__idioma {
+  font-size: 12.5px;
+  color: #374151;
+  margin-bottom: 5px;
+  padding-left: 12px;
+  border-left: 2.5px solid #2563EB;
+}
+
+/* Mensagem destaque */
+.cv__mensagem {
+  font-size: 12.5px;
+  font-style: italic;
+  color: #374151;
+  border-left: 3px solid #2563EB;
+  padding: 12px 16px;
+  background: #EFF6FF;
+  line-height: 1.8;
+  border-radius: 0 6px 6px 0;
+}
+
+/* Rodapé do CV */
+.cv__rodape {
+  margin-top: 28px;
+  padding-top: 12px;
+  border-top: 1px solid #E5E7EB;
+  font-size: 10px;
+  color: #9CA3AF;
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+
+/* ================================================
+   FOOTER DO SITE
+   ================================================ */
+.footer {
+  text-align: center;
+  padding: 32px 28px;
+  border-top: 1px solid var(--cinza-borda);
+  background: var(--branco);
+  color: var(--cinza);
+  font-size: 13px;
+}
+
+.footer strong { color: var(--azul-pri); font-weight: 700; }
+.footer strong a { color: var(--azul-pri); text-decoration: none; }
+.footer strong a:hover { text-decoration: underline; }
+
+.footer__sub {
+  font-size: 11px;
+  color: var(--cinza-claro);
+  margin-top: 4px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ================================================
+   RESPONSIVIDADE
+   ================================================ */
+@media (max-width: 1100px) {
+  .main { grid-template-columns: 360px 1fr; }
+}
+
+@media (max-width: 900px) {
+  .main { grid-template-columns: 1fr; gap: 24px; }
+  .painel-form { position: static; max-height: none; }
+
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 48px 20px 36px;
+    gap: 32px;
+  }
+
+  .hero__sub { margin: 0 auto 28px; }
+  .hero__acoes { justify-content: center; }
+  .hero__visual { width: 200px; height: 200px; }
+
+  .cv__cabecalho { grid-template-columns: 1fr; }
+  .cv__contatos { align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 6px 16px; }
+  .cv__duas-col { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (max-width: 620px) {
+  .navbar__links { display: none; }
+  .navbar__hamburger { display: flex; }
+  .main { padding: 0 16px 48px; }
+  .painel-form { padding: 20px 16px; }
+  .campo-linha { grid-template-columns: 1fr; }
+  .abas { gap: 2px; }
+  .aba { font-size: 11px; padding: 7px 2px; }
+  .cv-moldura { padding: 16px 12px; }
+  .cv { padding: 28px 18px; }
+  .cv__nome { font-size: 22px; }
+  .form-acoes { flex-direction: column; }
+  .hero__visual { width: 160px; height: 160px; }
+  .hero__tag { font-size: 10px; padding: 4px 10px; }
+}
+
+@media (max-width: 400px) {
+  .hero__titulo { font-size: 28px; }
+  .btn--lg { padding: 12px 22px; font-size: 14px; }
+  .cv { padding: 20px 14px; }
+  .cv__nome { font-size: 20px; }
+}
+
+/* ================================================
+   PRINT — imprimir como PDF pelo navegador
+   ================================================ */
+@media print {
+  body { background: #fff !important; }
+  .navbar, .hero, .painel-form, .painel-preview__topo, .footer { display: none !important; }
+  .main { display: block; padding: 0; max-width: 100%; }
+  .painel-preview { border-radius: 0; box-shadow: none; }
+  .cv-moldura { background: #fff !important; padding: 0 !important; border: none !important; }
+  .cv { box-shadow: none !important; border-radius: 0 !important; max-width: 100% !important; padding: 24px !important; }
+}
+
+
+/* ================================================
+   UX: progresso, navegação por etapas, foco
+   ================================================ */
+.progresso { display: flex; align-items: center; gap: 12px; margin: -6px 0 14px; }
+.progresso__trilho { flex: 1; height: 8px; background: var(--cinza-fraco); border-radius: 20px; overflow: hidden; }
+.progresso__barra { height: 100%; width: 0; background: linear-gradient(90deg, var(--azul-sec), var(--azul-pri)); border-radius: 20px; transition: width .4s ease; }
+.progresso__texto { font-size: 12px; font-weight: 600; color: var(--azul-pri); white-space: nowrap; }
+
+.form-nav { display: flex; gap: 10px; margin-top: 24px; }
+.form-nav .btn { flex: 1; }
+.form-nav + .form-acoes { margin-top: 10px; }
+
+.btn:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; transform: none; }
+.btn:focus-visible, .aba:focus-visible, .btn-adicionar:focus-visible, .item-card__rem:focus-visible {
+  outline: 3px solid var(--azul-sec); outline-offset: 2px;
+}
+.aba[aria-selected="true"] { font-weight: 700; }
+
+@media (prefers-reduced-motion: reduce) {
+  .progresso__barra, .status-salvamento { transition: none; }
+}
+
+/* Estado vazio das listas (começa sem exemplos) */
+#lista-experiencias:empty::before,
+#lista-educacao:empty::before {
+  content: "Nada adicionado ainda. Use o botão de adicionar.";
+  display: block; padding: 16px; margin-bottom: 12px;
+  border: 1.5px dashed var(--cinza-fraco); border-radius: var(--radius-sm);
+  color: var(--cinza); font-size: 13px; text-align: center;
+}
+
+==============================================================================
+ARQUIVO: script.js  (698 linhas)
+==============================================================================
+// ================================================
+//   GERADOR DE CURRÍCULO — TECH-ZL · ADS 2026
+//   script.js — Lógica completa + Exportar PDF
+// ================================================
+
+// ---- ESTADO ----
+let experiencias = [];
+let educacoes    = [];
+let contExp = 0;
+let contEdu = 0;
+
+// ---- PERSISTÊNCIA ----
+const STORAGE_KEY      = 'techzl:curriculo:v1';
+const SALVAR_DELAY_MS  = 500;   // RNF01: salvar em até 1 s após parar de digitar
+const CAMPOS = [
+  'nome', 'cargo', 'email', 'telefone', 'cidade',
+  'linkedin', 'github', 'instagram', 'resumo',
+  'habilidades', 'idiomas', 'cursos', 'mensagem'
+];
+let timerSalvar         = null;
+let salvamentoPendente  = false;
+let restaurando         = true;  // true durante o boot: evita salvar durante a restauração
+
+// ---- BOOT ----
+document.addEventListener('DOMContentLoaded', () => {
+  carregarSalvo();   // sem dados salvos, o formulário começa vazio
+  renderizarFormExp();
+  renderizarFormEdu();
+  restaurando = false;
+  initAbas();
+  initAcoes();
+  initInputs();
+  initNavbar();
+  renderizarCV();
+});
+
+// Garante que a última edição não se perca se a página for fechada/atualizada
+// dentro da janela de debounce.
+window.addEventListener('pagehide', salvarSePendente);
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') salvarSePendente();
+});
+
+function definir(id, valor) {
+  const el = document.getElementById(id);
+  if (el) el.value = valor;
+}
+
+function obter(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+
+// ================================================
+//   ABAS
+// ================================================
+const ABAS = ['pessoal', 'experiencia', 'educacao', 'extras'];
+let abaAtual = ABAS[0];
+
+function initAbas() {
+  document.querySelectorAll('.aba').forEach(btn => {
+    btn.addEventListener('click', () => ativarAba(btn.dataset.aba));
+  });
+  ativarAba(abaAtual);
+}
+
+function ativarAba(nome) {
+  if (!ABAS.includes(nome)) return;
+  abaAtual = nome;
+  document.querySelectorAll('.aba').forEach(b => {
+    const ativa = b.dataset.aba === nome;
+    b.classList.toggle('aba--ativa', ativa);
+    b.setAttribute('aria-selected', String(ativa));
+  });
+  document.querySelectorAll('.aba-conteudo').forEach(c =>
+    c.classList.toggle('aba-conteudo--ativa', c.id === 'aba-' + nome));
+  const i = ABAS.indexOf(nome);
+  const ant = document.querySelector('[data-acao="anterior"]');
+  const prox = document.querySelector('[data-acao="proximo"]');
+  if (ant)  ant.disabled  = i === 0;
+  if (prox) prox.disabled = i === ABAS.length - 1;
+}
+
+// Botões gerados por tools/gerar_botoes.py usam data-acao; aqui fica o comportamento.
+const ACOES = {
+  anterior: () => ativarAba(ABAS[ABAS.indexOf(abaAtual) - 1]),
+  proximo:  () => ativarAba(ABAS[ABAS.indexOf(abaAtual) + 1]),
+  limpar:   () => limparFormulario(),
+  pdf:      () => exportarPDF(),
+  html:     () => exportarCV()
+};
+
+function initAcoes() {
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('[data-acao]');
+    if (btn && !btn.disabled) ACOES[btn.dataset.acao]?.();
+  });
+}
+
+function atualizarProgresso(d) {
+  const itens = [d.nome, d.cargo, d.email, d.resumo,
+                 d.experiencias.length, d.educacoes.length, d.habilidades.length];
+  const pct = Math.round(itens.filter(Boolean).length / itens.length * 100);
+  const barra = document.getElementById('progresso-barra');
+  const txt   = document.getElementById('progresso-texto');
+  if (barra) { barra.style.width = pct + '%'; barra.setAttribute('aria-valuenow', pct); }
+  if (txt)   txt.textContent = pct + '% completo';
+}
+
+// ================================================
+//   INPUTS → RENDERIZAR AO VIVO
+// ================================================
+function initInputs() {
+  CAMPOS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => { renderizarCV(); agendarSalvamento(); });
+  });
+
+  document.getElementById('btn-exportar')?.addEventListener('click', exportarCV);
+  document.getElementById('btn-exportar-pdf')?.addEventListener('click', exportarPDF);
+}
+
+// ================================================
+//   NAVBAR HAMBURGER
+// ================================================
+function initNavbar() {
+  const hb   = document.getElementById('hamburger');
+  const menu = document.getElementById('mobile-menu');
+  if (hb && menu) {
+    hb.addEventListener('click', () => menu.classList.toggle('aberto'));
+  }
+}
+
+function fecharMenu() {
+  document.getElementById('mobile-menu')?.classList.remove('aberto');
+}
+
+// ================================================
+//   EXPERIÊNCIAS
+// ================================================
+function adicionarExperiencia(empresa = '', cargo = '', periodo = '', descricao = '') {
+  contExp++;
+  experiencias.push({ id: 'exp-' + contExp, empresa, cargo, periodo, descricao });
+  renderizarFormExp();
+  renderizarCV();
+  agendarSalvamento();
+}
+
+function removerExperiencia(id) {
+  experiencias = experiencias.filter(e => e.id !== id);
+  renderizarFormExp();
+  renderizarCV();
+  agendarSalvamento();
+}
+
+function atualizarExp(id, campo, valor) {
+  const item = experiencias.find(e => e.id === id);
+  if (item) { item[campo] = valor; renderizarCV(); agendarSalvamento(); }
+}
+
+function renderizarFormExp() {
+  const container = document.getElementById('lista-experiencias');
+  if (!container) return;
+  container.innerHTML = '';
+
+  experiencias.forEach((exp, i) => {
+    const card = document.createElement('div');
+    card.className = 'item-card';
+    card.innerHTML = `
+      <div class="item-card__topo">
+        <span class="item-card__num">Experiência ${i + 1}</span>
+        <button class="item-card__rem" onclick="removerExperiencia('${exp.id}')">Remover</button>
+      </div>
+      <div class="campo">
+        <label>Empresa</label>
+        <input type="text" value="${esc(exp.empresa)}"
+          oninput="atualizarExp('${exp.id}', 'empresa', this.value)"
+          placeholder="Nome da empresa" />
+      </div>
+      <div class="campo-linha">
+        <div class="campo">
+          <label>Cargo / Função</label>
+          <input type="text" value="${esc(exp.cargo)}"
+            oninput="atualizarExp('${exp.id}', 'cargo', this.value)"
+            placeholder="Seu cargo" />
+        </div>
+        <div class="campo">
+          <label>Período</label>
+          <input type="text" value="${esc(exp.periodo)}"
+            oninput="atualizarExp('${exp.id}', 'periodo', this.value)"
+            placeholder="Jan 2023 – Dez 2024" />
+        </div>
+      </div>
+      <div class="campo">
+        <label>Descrição das atividades</label>
+        <textarea rows="3"
+          oninput="atualizarExp('${exp.id}', 'descricao', this.value)"
+          placeholder="Atividades, conquistas, responsabilidades...">${esc(exp.descricao)}</textarea>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// ================================================
+//   EDUCAÇÃO
+// ================================================
+function adicionarEducacao(curso = '', instituicao = '', periodo = '') {
+  contEdu++;
+  educacoes.push({ id: 'edu-' + contEdu, curso, instituicao, periodo });
+  renderizarFormEdu();
+  renderizarCV();
+  agendarSalvamento();
+}
+
+function removerEducacao(id) {
+  educacoes = educacoes.filter(e => e.id !== id);
+  renderizarFormEdu();
+  renderizarCV();
+  agendarSalvamento();
+}
+
+function atualizarEdu(id, campo, valor) {
+  const item = educacoes.find(e => e.id === id);
+  if (item) { item[campo] = valor; renderizarCV(); agendarSalvamento(); }
+}
+
+function renderizarFormEdu() {
+  const container = document.getElementById('lista-educacao');
+  if (!container) return;
+  container.innerHTML = '';
+
+  educacoes.forEach((edu, i) => {
+    const card = document.createElement('div');
+    card.className = 'item-card';
+    card.innerHTML = `
+      <div class="item-card__topo">
+        <span class="item-card__num">Formação ${i + 1}</span>
+        <button class="item-card__rem" onclick="removerEducacao('${edu.id}')">Remover</button>
+      </div>
+      <div class="campo">
+        <label>Curso / Formação</label>
+        <input type="text" value="${esc(edu.curso)}"
+          oninput="atualizarEdu('${edu.id}', 'curso', this.value)"
+          placeholder="Ex: Análise e Desenvolvimento de Sistemas" />
+      </div>
+      <div class="campo-linha">
+        <div class="campo">
+          <label>Instituição</label>
+          <input type="text" value="${esc(edu.instituicao)}"
+            oninput="atualizarEdu('${edu.id}', 'instituicao', this.value)"
+            placeholder="Nome da instituição" />
+        </div>
+        <div class="campo">
+          <label>Período</label>
+          <input type="text" value="${esc(edu.periodo)}"
+            oninput="atualizarEdu('${edu.id}', 'periodo', this.value)"
+            placeholder="2026 – 2028" />
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// ================================================
+//   RENDERIZAR O CURRÍCULO
+// ================================================
+function renderizarCV() {
+  const preview = document.getElementById('cv-preview');
+  if (!preview) return;
+  const d = coletarDados();
+  preview.innerHTML = gerarHTMLCV(d);
+  atualizarProgresso(d);
+}
+
+function coletarDados() {
+  return {
+    nome:        obter('nome'),
+    cargo:       obter('cargo'),
+    email:       obter('email'),
+    telefone:    obter('telefone'),
+    cidade:      obter('cidade'),
+    linkedin:    obter('linkedin'),
+    github:      obter('github'),
+    instagram:   obter('instagram'),
+    resumo:      obter('resumo'),
+    habilidades: obter('habilidades').split(',').map(s => s.trim()).filter(Boolean),
+    idiomas:     obter('idiomas').split(',').map(s => s.trim()).filter(Boolean),
+    cursos:      obter('cursos').split('\n').map(s => s.trim()).filter(Boolean),
+    mensagem:    obter('mensagem'),
+    experiencias,
+    educacoes
+  };
+}
+
+function gerarHTMLCV(d) {
+  const contatos = [];
+  if (d.email)     contatos.push({ texto: d.email,     href: 'mailto:' + d.email });
+  if (d.telefone)  contatos.push({ texto: d.telefone,  href: 'tel:' + d.telefone.replace(/\D/g, '') });
+  if (d.cidade)    contatos.push({ texto: d.cidade,    href: null });
+  if (d.linkedin)  contatos.push({ texto: d.linkedin,  href: 'https://' + d.linkedin.replace(/^https?:\/\//, '') });
+  if (d.github)    contatos.push({ texto: d.github,    href: 'https://' + d.github.replace(/^https?:\/\//, '') });
+  if (d.instagram) contatos.push({ texto: d.instagram, href: 'https://' + d.instagram.replace(/^https?:\/\//, '') });
+
+  let html = '';
+
+  // CABEÇALHO
+  html += `
+  <div class="cv__cabecalho">
+    <div>
+      <div class="cv__nome">${esc(d.nome) || 'Seu Nome Aqui'}</div>
+      ${d.cargo ? `<div class="cv__cargo">${esc(d.cargo)}</div>` : ''}
+    </div>
+    <div class="cv__contatos">
+      ${contatos.map(c =>
+        `<div class="cv__contato">${
+          c.href ? `<a href="${esc(c.href)}">${esc(c.texto)}</a>` : esc(c.texto)
+        }</div>`
+      ).join('')}
+    </div>
+  </div>`;
+
+  if (d.resumo) html += secao('Sobre mim', `<div class="cv__resumo">${esc(d.resumo)}</div>`);
+
+  if (d.experiencias.length > 0) {
+    const corpo = d.experiencias.map(exp => `
+      <div class="cv__exp">
+        <div class="cv__exp-topo">
+          <span class="cv__exp-empresa">${esc(exp.empresa) || 'Empresa'}</span>
+          ${exp.periodo ? `<span class="cv__exp-periodo">${esc(exp.periodo)}</span>` : ''}
+        </div>
+        ${exp.cargo    ? `<div class="cv__exp-cargo">${esc(exp.cargo)}</div>` : ''}
+        ${exp.descricao ? `<div class="cv__exp-desc">${esc(exp.descricao)}</div>` : ''}
+      </div>
+    `).join('');
+    html += secao('Experiências profissionais', corpo);
+  }
+
+  if (d.educacoes.length > 0) {
+    const corpo = d.educacoes.map(edu => `
+      <div class="cv__edu">
+        <div class="cv__edu-curso">${esc(edu.curso) || 'Curso'}</div>
+        ${edu.instituicao ? `<div class="cv__edu-inst">${esc(edu.instituicao)}</div>` : ''}
+        ${edu.periodo     ? `<div class="cv__edu-periodo">${esc(edu.periodo)}</div>` : ''}
+      </div>
+    `).join('');
+    html += secao('Formação acadêmica', corpo);
+  }
+
+  if (d.cursos.length > 0) {
+    html += secao('Cursos e certificados',
+      `<div class="cv__cursos">${
+        d.cursos.map(c => `<span class="cv__curso">${esc(c)}</span>`).join('')
+      }</div>`
+    );
+  }
+
+  const temHab = d.habilidades.length > 0;
+  const temIdi = d.idiomas.length > 0;
+
+  if (temHab || temIdi) {
+    let cols = '';
+    if (temHab) {
+      cols += `
+        <div class="cv__secao">
+          <div class="cv__secao-titulo">Habilidades técnicas</div>
+          <div class="cv__habilidades">
+            ${d.habilidades.map(h => `<span class="cv__habilidade">${esc(h)}</span>`).join('')}
+          </div>
+        </div>`;
+    }
+    if (temIdi) {
+      cols += `
+        <div class="cv__secao">
+          <div class="cv__secao-titulo">Idiomas</div>
+          ${d.idiomas.map(i => `<div class="cv__idioma">${esc(i)}</div>`).join('')}
+        </div>`;
+    }
+    html += `<div class="cv__duas-col">${cols}</div>`;
+  }
+
+  if (d.mensagem) {
+    html += secao('Por que devo ser contratado?',
+      `<div class="cv__mensagem">${esc(d.mensagem)}</div>`
+    );
+  }
+
+  html += `
+  <div class="cv__rodape">
+    ${esc(d.nome) || 'Currículo'} · Gerado em ${new Date().toLocaleDateString('pt-BR')} · ADS 2026
+  </div>`;
+
+  return html;
+}
+
+function secao(titulo, conteudo) {
+  return `
+  <div class="cv__secao">
+    <div class="cv__secao-titulo">${titulo}</div>
+    ${conteudo}
+  </div>`;
+}
+
+// ================================================
+//   CSS INLINE DO CURRÍCULO (para PDF / exportar)
+// ================================================
+function getCVInlineCSS() {
+  return `
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter','Segoe UI',sans-serif; background: #E5E7EB; display: flex; justify-content: center; padding: 40px 20px; min-height: 100vh; }
+    .cv { background: #ffffff; color: #1a1a1a; padding: 52px 48px; max-width: 820px; width: 100%; box-shadow: 0 4px 40px rgba(0,0,0,.12); border-radius: 3px; align-self: flex-start; font-family: 'Inter','Segoe UI',sans-serif; }
+    .cv__cabecalho { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; padding-bottom: 20px; margin-bottom: 24px; border-bottom: 3px solid #111827; position: relative; }
+    .cv__cabecalho::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 60px; height: 3px; background: #2563EB; border-radius: 2px; }
+    .cv__nome { font-family: 'Playfair Display',Georgia,serif; font-size: 28px; color: #111827; letter-spacing: -.3px; line-height: 1.1; }
+    .cv__cargo { font-size: 13px; color: #4B5563; margin-top: 4px; }
+    .cv__contatos { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+    .cv__contato { font-size: 11px; color: #4B5563; }
+    .cv__contato a { color: #1B3A6B; text-decoration: none; }
+    .cv__secao { margin-bottom: 22px; }
+    .cv__secao-titulo { font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #1B3A6B; border-bottom: 1px solid #E5E7EB; padding-bottom: 5px; margin-bottom: 13px; }
+    .cv__resumo { font-size: 12.5px; line-height: 1.75; color: #374151; }
+    .cv__exp { margin-bottom: 14px; }
+    .cv__exp-topo { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+    .cv__exp-empresa { font-size: 13.5px; font-weight: 700; color: #111827; }
+    .cv__exp-periodo { font-size: 11px; color: #1B3A6B; font-weight: 600; white-space: nowrap; background: #DBEAFE; padding: 2px 8px; border-radius: 20px; }
+    .cv__exp-cargo { font-size: 12px; color: #4B5563; margin-top: 2px; font-style: italic; }
+    .cv__exp-desc { font-size: 12px; color: #374151; line-height: 1.65; margin-top: 5px; }
+    .cv__edu { margin-bottom: 12px; }
+    .cv__edu-curso { font-size: 13.5px; font-weight: 700; color: #111827; }
+    .cv__edu-inst { font-size: 12px; color: #4B5563; margin-top: 2px; }
+    .cv__edu-periodo { font-size: 11px; color: #1B3A6B; margin-top: 2px; font-weight: 600; }
+    .cv__cursos { display: flex; flex-wrap: wrap; gap: 7px; }
+    .cv__curso { font-size: 11px; padding: 4px 12px; background: #EFF6FF; color: #1B3A6B; border-radius: 20px; border: 1px solid #BFDBFE; font-weight: 500; }
+    .cv__duas-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .cv__habilidades { display: flex; flex-wrap: wrap; gap: 6px; }
+    .cv__habilidade { font-size: 11px; padding: 4px 11px; background: #1B3A6B; color: #FFFFFF; border-radius: 4px; font-weight: 600; }
+    .cv__idioma { font-size: 12.5px; color: #374151; margin-bottom: 5px; padding-left: 12px; border-left: 2.5px solid #2563EB; }
+    .cv__mensagem { font-size: 12.5px; font-style: italic; color: #374151; border-left: 3px solid #2563EB; padding: 12px 16px; background: #EFF6FF; line-height: 1.8; border-radius: 0 6px 6px 0; }
+    .cv__rodape { margin-top: 28px; padding-top: 12px; border-top: 1px solid #E5E7EB; font-size: 10px; color: #9CA3AF; text-align: center; letter-spacing: .06em; }
+    @media (max-width: 600px) {
+      body { padding: 0; }
+      .cv { padding: 28px 18px; border-radius: 0; box-shadow: none; }
+      .cv__cabecalho { grid-template-columns: 1fr; }
+      .cv__contatos { align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 6px 14px; }
+      .cv__duas-col { grid-template-columns: 1fr; gap: 0; }
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .cv { box-shadow: none; padding: 32px; max-width: 100%; border-radius: 0; }
+    }
+  `;
+}
+
+// ================================================
+//   EXPORTAR HTML COMPLETO
+// ================================================
+function exportarCV() {
+  const d = coletarDados();
+  if (!d.nome) {
+    alert('Preencha pelo menos o campo "Nome completo" antes de exportar!');
+    return;
+  }
+
+  const arquivo = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Currículo — ${esc(d.nome)}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>${getCVInlineCSS()}</style>
+</head>
+<body>
+  <div class="cv">
+    ${gerarHTMLCV(d)}
+  </div>
+</body>
+</html>`;
+
+  const blob = new Blob([arquivo], { type: 'text/html;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  const nome = normalizarNome(d.nome);
+
+  link.href     = url;
+  link.download = 'curriculo-' + nome + '.html';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+// ================================================
+//   EXPORTAR PDF (html2pdf.js)
+// ================================================
+async function exportarPDF() {
+  if (typeof html2pdf === 'undefined') {
+    alert('Biblioteca de PDF ainda carregando. Aguarde alguns segundos e tente novamente.');
+    return;
+  }
+
+  const d = coletarDados();
+  if (!d.nome) {
+    alert('Preencha pelo menos o campo "Nome completo" antes de exportar!');
+    return;
+  }
+
+  const btnPDF = document.getElementById('btn-exportar-pdf');
+  const textoOriginal = btnPDF ? btnPDF.textContent : '';
+  if (btnPDF) {
+    btnPDF.disabled    = true;
+    btnPDF.textContent = 'Gerando PDF...';
+  }
+
+  // Cria um container oculto com os estilos inline e o HTML do CV
+  const container = document.createElement('div');
+  container.style.cssText = 'position:fixed;left:-9999px;top:0;width:794px;background:#fff;padding:0;z-index:-1;';
+
+  const styleEl = document.createElement('style');
+  styleEl.textContent = getCVInlineCSS();
+  container.appendChild(styleEl);
+
+  const cvDiv = document.createElement('div');
+  cvDiv.className = 'cv';
+  cvDiv.style.cssText = 'padding:44px 48px;max-width:100%;width:100%;box-shadow:none;border-radius:0;';
+  cvDiv.innerHTML = gerarHTMLCV(d);
+  container.appendChild(cvDiv);
+
+  document.body.appendChild(container);
+
+  const nome = normalizarNome(d.nome);
+
+  try {
+    await html2pdf().set({
+      margin:      [8, 10, 8, 10],
+      filename:    'curriculo-' + nome + '.pdf',
+      image:       { type: 'jpeg', quality: 0.97 },
+      html2canvas: { scale: 2, useCORS: true, logging: false, letterRendering: true },
+      jsPDF:       { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    }).from(cvDiv).save();
+  } catch (err) {
+    console.error('Erro ao gerar PDF:', err);
+    alert('Erro ao gerar PDF. Alternativa: use Ctrl+P e salve como PDF pelo navegador.');
+  } finally {
+    document.body.removeChild(container);
+    if (btnPDF) {
+      btnPDF.disabled    = false;
+      btnPDF.textContent = textoOriginal;
+    }
+  }
+}
+
+// ================================================
+//   LIMPAR FORMULÁRIO
+// ================================================
+function limparFormulario() {
+  if (!confirm('Tem certeza que deseja limpar todos os dados?')) return;
+
+  CAMPOS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+
+  experiencias = [];
+  educacoes    = [];
+  contExp = 0;
+  contEdu = 0;
+
+  renderizarFormExp();
+  renderizarFormEdu();
+  renderizarCV();
+
+  // Grava o estado vazio na hora (cancela salvamento pendente). Assim, ao
+  // atualizar a página, os dados antigos não voltam.
+  salvarAgora();
+}
+
+// ================================================
+//   PERSISTÊNCIA (localStorage)
+// ================================================
+function montarSnapshot() {
+  const campos = {};
+  CAMPOS.forEach(id => {
+    const el = document.getElementById(id);
+    campos[id] = el ? el.value : '';
+  });
+  return {
+    versao: 1,
+    campos,
+    experiencias: experiencias.map(({ empresa, cargo, periodo, descricao }) =>
+      ({ empresa, cargo, periodo, descricao })),
+    educacoes: educacoes.map(({ curso, instituicao, periodo }) =>
+      ({ curso, instituicao, periodo }))
+  };
+}
+
+function agendarSalvamento() {
+  if (restaurando) return;
+  salvamentoPendente = true;
+  mostrarStatus('salvando');
+  clearTimeout(timerSalvar);
+  timerSalvar = setTimeout(salvarAgora, SALVAR_DELAY_MS);
+}
+
+function salvarSePendente() {
+  if (salvamentoPendente) salvarAgora();
+}
+
+function salvarAgora() {
+  clearTimeout(timerSalvar);
+  timerSalvar = null;
+  salvamentoPendente = false;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(montarSnapshot()));
+    mostrarStatus('salvo');
+    return true;
+  } catch (err) {
+    console.error('Erro ao salvar currículo:', err);
+    mostrarStatus('erro', 'Não foi possível salvar: armazenamento do navegador indisponível ou cheio.');
+    return false;
+  }
+}
+
+// Retorna true se restaurou dados salvos; false se não há dados (ou são inválidos): o formulário fica em branco.
+// Valida e normaliza tudo ANTES de alterar a tela, e gera novos ids para os itens
+// (ids vão para atributos onclick e não devem vir do storage).
+function carregarSalvo() {
+  let bruto;
+  try {
+    bruto = localStorage.getItem(STORAGE_KEY);
+  } catch (err) {
+    console.error('localStorage indisponível:', err);
+    mostrarStatus('erro', 'Armazenamento do navegador indisponível: suas alterações não serão salvas.');
+    return false;
+  }
+  if (bruto === null) return false;
+
+  const texto = v => (typeof v === 'string' ? v : '');
+  const lista = v => (Array.isArray(v) ? v.filter(x => x && typeof x === 'object') : []);
+
+  let dados;
+  try {
+    const s = JSON.parse(bruto);
+    if (!s || typeof s !== 'object' || !s.campos || typeof s.campos !== 'object') {
+      throw new Error('formato inválido');
+    }
+    dados = {
+      campos: Object.fromEntries(CAMPOS.map(id => [id, texto(s.campos[id])])),
+      exps:   lista(s.experiencias).map(e => [texto(e.empresa), texto(e.cargo), texto(e.periodo), texto(e.descricao)]),
+      edus:   lista(s.educacoes).map(e => [texto(e.curso), texto(e.instituicao), texto(e.periodo)])
+    };
+  } catch (err) {
+    console.warn('Dados salvos ilegíveis; iniciando em branco.', err);
+    mostrarStatus('erro', 'Os dados salvos estavam ilegíveis e foram ignorados.');
+    return false;
+  }
+
+  CAMPOS.forEach(id => definir(id, dados.campos[id]));
+  experiencias = [];
+  educacoes    = [];
+  contExp = 0;
+  contEdu = 0;
+  dados.exps.forEach(args => adicionarExperiencia(...args));
+  dados.edus.forEach(args => adicionarEducacao(...args));
+  return true;
+}
+
+function mostrarStatus(estado, mensagem = '') {
+  const el = document.getElementById('status-salvamento');
+  if (!el) return;
+  const hora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+  const textos = {
+    salvando: 'Salvando…',
+    salvo:    `✓ Salvo neste navegador às ${hora}`,
+    erro:     mensagem
+  };
+  el.dataset.estado = estado;
+  el.textContent    = textos[estado];
+  el.hidden         = false;
+}
+
+// ================================================
+//   UTILITÁRIOS
+// ================================================
+function esc(str) {
+  return (str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function normalizarNome(nome) {
+  return (nome || 'curriculo').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+}
+
+==============================================================================
+ARQUIVO: empresa.html  (226 linhas)
+==============================================================================
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Processo Seletivo com IA | Tech-ZL · ADS 2026</title>
+    <link rel="stylesheet" href="empresa.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
+    <!-- ========== NAVBAR ========== -->
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo">
+          TECH-ZL <span>Processo Seletivo com IA</span>
+        </a>
+        <nav class="navbar__links">
+          <a href="index.html">← Para Candidatos</a>
+          <a href="#passo-1">Vagas</a>
+          <a href="#passo-2">Requisitos</a>
+          <a href="#passo-3">Processo Seletivo</a>
+          <a href="https://gemini.google.com/gems/create" target="_blank" class="btn btn--outline btn--sm">💎 Criar Agente Gems</a>
+        </nav>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="navbar__mobile" id="mobile-menu">
+        <a href="index.html" onclick="fecharMenu()">← Para Candidatos</a>
+        <a href="#passo-1" onclick="fecharMenu()">Vagas</a>
+        <a href="#passo-2" onclick="fecharMenu()">Requisitos</a>
+        <a href="#passo-3" onclick="fecharMenu()">Processo Seletivo</a>
+        <a href="https://gemini.google.com/gems/create" target="_blank" onclick="fecharMenu()" class="btn btn--outline btn--sm">💎 Criar Agente Gems</a>
+      </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero-empresa">
+      <div class="hero-empresa__conteudo">
+        <span class="hero-empresa__badge">Para Empresas · ADS 2026</span>
+        <h1 class="hero-empresa__titulo">
+          Processo Seletivo<br>
+          <span class="hero-empresa__destaque">com Gemini Gems · Gratuito</span>
+        </h1>
+        <p class="hero-empresa__sub">
+          Cadastre suas vagas, gere os requisitos técnicos e envie ao seu Agente Gems no Gemini —
+          o agente conduzirá a triagem dos currículos diretamente no chat, sem custo de API.
+        </p>
+        <div class="hero-empresa__passos">
+          <div class="passo-mini">
+            <span class="passo-mini__num">1</span>
+            <span>Cadastre as vagas</span>
+          </div>
+          <div class="passo-mini__seta">→</div>
+          <div class="passo-mini">
+            <span class="passo-mini__num">2</span>
+            <span>Gere os requisitos</span>
+          </div>
+          <div class="passo-mini__seta">→</div>
+          <div class="passo-mini">
+            <span class="passo-mini__num">3</span>
+            <span>Gems faz a triagem</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MAIN ========== -->
+    <main class="main-empresa">
+
+      <!-- ======== PASSO 1: VAGAS ======== -->
+      <section class="step-card" id="passo-1">
+        <div class="step-card__header">
+          <div class="step-num">1</div>
+          <div>
+            <h2 class="step-card__titulo">Cadastre a Empresa e as Vagas</h2>
+            <p class="step-card__desc">Preencha os dados da empresa e adicione quantas vagas precisar.</p>
+          </div>
+        </div>
+
+        <!-- Dados da empresa -->
+        <div class="empresa-dados">
+          <div class="campo-linha">
+            <div class="campo">
+              <label for="nome-empresa">Nome da empresa <span class="obrig">*</span></label>
+              <input type="text" id="nome-empresa" placeholder="Ex: Empresa Inovadora S.A." />
+            </div>
+            <div class="campo">
+              <label for="setor-empresa">Setor / Área de atuação</label>
+              <input type="text" id="setor-empresa" placeholder="Ex: Tecnologia, Finanças, Saúde..." />
+            </div>
+          </div>
+        </div>
+
+        <!-- Lista de vagas -->
+        <div id="lista-vagas"></div>
+
+        <button class="btn-adicionar" onclick="adicionarVaga()">
+          <span class="btn-adicionar__icone">+</span>
+          Adicionar vaga
+        </button>
+
+        <div class="step-acoes">
+          <button class="btn btn--ghost" onclick="limparTudo()">Limpar tudo</button>
+          <button class="btn btn--primary" onclick="gerarRequisitos()">
+            Gerar Requisitos para todas as vagas →
+          </button>
+        </div>
+      </section>
+
+      <!-- ======== PASSO 2: REQUISITOS TÉCNICOS ======== -->
+      <section class="step-card" id="passo-2" style="display:none;">
+        <div class="step-card__header">
+          <div class="step-num">2</div>
+          <div>
+            <h2 class="step-card__titulo">Requisitos Técnicos Gerados</h2>
+            <p class="step-card__desc">
+              Revise os requisitos de cada vaga. Copie para compartilhar ou avance para enviar ao Agente Gems.
+            </p>
+          </div>
+        </div>
+        <div id="lista-prompts"></div>
+        <div class="step-acoes">
+          <button class="btn btn--ghost" onclick="voltarPasso1()">← Editar vagas</button>
+          <button class="btn btn--primary" onclick="irParaPasso3()">
+            Iniciar Processo Seletivo com Gems →
+          </button>
+        </div>
+      </section>
+
+      <!-- ======== PASSO 3: PROCESSO SELETIVO COM GEMS ======== -->
+      <section class="step-card" id="passo-3" style="display:none;">
+        <div class="step-card__header">
+          <div class="step-num">3</div>
+          <div>
+            <h2 class="step-card__titulo">Processo Seletivo com Gemini Gems</h2>
+            <p class="step-card__desc">
+              Selecione a vaga e envie os requisitos técnicos ao seu Agente Gems.
+              O agente solicitará os currículos diretamente no chat para iniciar a triagem inteligente.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card: Prompt do Agente Gems -->
+        <div class="gems-info-card" id="gems-info-card">
+          <div class="gems-info-card__header" onclick="toggleGemsPrompt()">
+            <div class="gems-info-card__titulo">
+              <span class="gems-icon">💎</span>
+              <span>Ainda não tem um Agente Gems? Clique aqui para ver o prompt de criação</span>
+            </div>
+            <span class="gems-info-card__toggle" id="gems-toggle-label">▼ Expandir</span>
+          </div>
+          <div class="gems-info-card__corpo" id="gems-prompt-corpo" style="display:none;">
+            <div class="gems-instrucoes-passo">
+              <span class="gems-passo-num">1</span>
+              Acesse
+              <a href="https://gemini.google.com/gems/create" target="_blank" class="gems-link">gemini.google.com/gems/create</a>
+            </div>
+            <div class="gems-instrucoes-passo">
+              <span class="gems-passo-num">2</span>
+              Dê um nome ao Agente (ex: "Recrutador Tech-ZL") e cole o prompt abaixo no campo de instruções
+            </div>
+            <div class="gems-instrucoes-passo">
+              <span class="gems-passo-num">3</span>
+              Salve o Gem e volte aqui para gerar a mensagem com os requisitos da vaga
+            </div>
+            <div class="prompt-card" style="margin-top:16px;">
+              <div class="prompt-card__topo">
+                <span class="prompt-card__titulo">📋 Prompt do Agente Recrutador Gems</span>
+                <div class="prompt-card__acoes">
+                  <button class="btn-copiar" onclick="copiarPrompt(this, 'gems-agent-prompt')">📋 Copiar prompt</button>
+                </div>
+              </div>
+              <textarea
+                id="gems-agent-prompt"
+                class="prompt-card__textarea"
+                rows="16"
+                spellcheck="false"
+                readonly
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seleção de vaga -->
+        <div class="campo">
+          <label for="select-vaga-analise">Vaga para o processo seletivo <span class="obrig">*</span></label>
+          <select id="select-vaga-analise" onchange="mostrarRequisitosSelecionados()">
+            <option value="">Selecione uma vaga...</option>
+          </select>
+        </div>
+
+        <!-- Requisitos da vaga selecionada (preview) -->
+        <div id="bloco-requisitos-preview" style="display:none;">
+          <div class="campo">
+            <label>Requisitos técnicos da vaga selecionada <small>(gerados no Passo 2)</small></label>
+            <textarea id="requisitos-preview" class="prompt-card__textarea" rows="6" readonly></textarea>
+          </div>
+        </div>
+
+        <div class="step-acoes">
+          <button class="btn btn--ghost" onclick="voltarPasso2()">← Ver requisitos</button>
+          <button class="btn btn--primary btn--lg" id="btn-analisar" onclick="prepararParaGemini()">
+            📋 Enviar Requisitos para o Gems →
+          </button>
+        </div>
+
+        <!-- RESULTADO: Mensagem pronta para o Gems -->
+        <div id="resultado-analise" class="resultado-analise"></div>
+      </section>
+
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <p>Processo Seletivo com IA · 2026</p>
+      <p class="footer__sub">HTML · CSS · JavaScript · Gemini Gems · ADS 2026</p>
+    </footer>
+
+    <script src="empresa.js"></script>
+  </body>
+</html>
+
+==============================================================================
+ARQUIVO: empresa.css  (1079 linhas)
+==============================================================================
+/* ================================================
+   TRIAGEM COM IA — TECH-ZL · ADS 2026
+   empresa.css — Estilos da página Para Empresas
+   Paleta: #1B3A6B · #2563EB · #F0F4F8 · #4B5563
+   ================================================ */
+
+/* ---- RESET ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- VARIÁVEIS ---- */
+:root {
+  --azul-pri:    #1B3A6B;
+  --azul-sec:    #2563EB;
+  --azul-esc:    #142B52;
+  --azul-tag:    #DBEAFE;
+  --fundo:       #F0F4F8;
+  --cinza:       #4B5563;
+  --cinza-claro: #9CA3AF;
+  --cinza-borda: #D1D5DB;
+  --cinza-fraco: #F3F4F6;
+  --preto:       #111827;
+  --preto-soft:  #1F2937;
+  --branco:      #FFFFFF;
+  --verde:       #16a34a;
+  --verde-bg:    #F0FDF4;
+  --vermelho:    #DC2626;
+  --vermelho-bg: #FEF2F2;
+
+  --fonte-titulo: 'Playfair Display', Georgia, serif;
+  --fonte-corpo:  'Inter', 'Segoe UI', sans-serif;
+
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+
+  --sombra-card: 0 2px 20px rgba(27, 58, 107, 0.09);
+  --sombra-btn:  0 4px 16px rgba(27, 58, 107, 0.28);
+  --trans:       0.22s ease;
+}
+
+/* ---- BASE ---- */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--fonte-corpo);
+  background-color: var(--fundo);
+  color: var(--preto);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cinza-fraco); }
+::-webkit-scrollbar-thumb { background: var(--azul-pri); border-radius: 4px; }
+
+/* ================================================
+   NAVBAR
+   ================================================ */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--cinza-borda);
+  box-shadow: 0 1px 12px rgba(27, 58, 107, 0.07);
+}
+
+.navbar__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__logo {
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  color: var(--azul-pri);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+}
+
+.navbar__logo span {
+  font-family: var(--fonte-corpo);
+  font-size: 12px;
+  color: var(--cinza);
+  font-weight: 400;
+  margin-left: 8px;
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.navbar__links a {
+  color: var(--cinza);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color var(--trans);
+}
+
+.navbar__links a:hover { color: var(--azul-sec); }
+
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.navbar__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--preto);
+  border-radius: 2px;
+  transition: var(--trans);
+}
+
+.navbar__mobile {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 28px 18px;
+  background: var(--branco);
+  border-top: 1px solid var(--cinza-borda);
+}
+
+.navbar__mobile.aberto { display: flex; }
+
+.navbar__mobile a {
+  color: var(--cinza);
+  text-decoration: none;
+  font-size: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cinza-fraco);
+  font-weight: 500;
+}
+
+.navbar__mobile .btn { margin-top: 8px; justify-content: center; }
+
+/* ================================================
+   BOTÕES
+   ================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--fonte-corpo);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all var(--trans);
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+.btn--primary {
+  background: var(--azul-pri);
+  color: var(--branco);
+  box-shadow: var(--sombra-btn);
+}
+
+.btn--primary:hover {
+  background: var(--azul-esc);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 58, 107, 0.38);
+}
+
+.btn--primary:active { transform: translateY(0); }
+
+.btn--outline {
+  background: transparent;
+  color: var(--azul-pri);
+  border: 1.5px solid var(--azul-pri);
+}
+
+.btn--outline:hover {
+  background: var(--azul-tag);
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--cinza);
+  border: 1.5px solid var(--cinza-borda);
+}
+
+.btn--ghost:hover {
+  border-color: var(--azul-sec);
+  color: var(--azul-sec);
+  background: var(--azul-tag);
+}
+
+.btn--sm {
+  padding: 7px 14px;
+  font-size: 12px;
+}
+
+.btn--lg {
+  padding: 14px 32px;
+  font-size: 15px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ================================================
+   MODAL API KEY
+   ================================================ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.55);
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+}
+
+.modal-overlay.aberto {
+  display: flex;
+}
+
+.modal {
+  background: var(--branco);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  max-width: 480px;
+  width: calc(100% - 40px);
+  box-shadow: 0 20px 60px rgba(17, 24, 39, 0.25);
+  animation: modalEntrar 0.22s ease;
+}
+
+@keyframes modalEntrar {
+  from { opacity: 0; transform: translateY(-16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.modal__titulo {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--preto);
+}
+
+.modal__fechar {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--cinza-claro);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: all var(--trans);
+}
+
+.modal__fechar:hover {
+  background: var(--cinza-fraco);
+  color: var(--vermelho);
+}
+
+.modal__desc {
+  font-size: 13.5px;
+  color: var(--cinza);
+  margin-bottom: 18px;
+  line-height: 1.65;
+}
+
+.modal__link {
+  font-size: 12.5px;
+  color: var(--cinza-claro);
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.modal__link a {
+  color: var(--azul-sec);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.modal__link a:hover { text-decoration: underline; }
+
+.modal__acoes {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* ================================================
+   CAMPOS
+   ================================================ */
+.campo { margin-bottom: 14px; }
+
+.campo label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--preto-soft);
+  margin-bottom: 5px;
+  letter-spacing: 0.02em;
+}
+
+.campo label small {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--cinza-claro);
+}
+
+.obrig { color: var(--azul-sec); }
+
+.campo input,
+.campo textarea,
+.campo select {
+  width: 100%;
+  background: var(--fundo);
+  border: 1.5px solid var(--cinza-borda);
+  border-radius: var(--radius-sm);
+  padding: 10px 13px;
+  font-size: 13px;
+  color: var(--preto);
+  font-family: var(--fonte-corpo);
+  transition: border-color var(--trans), box-shadow var(--trans);
+  outline: none;
+  resize: vertical;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder { color: var(--cinza-claro); }
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+  border-color: var(--azul-sec);
+  background: var(--branco);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.campo-linha {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ================================================
+   HERO EMPRESA
+   ================================================ */
+.hero-empresa {
+  background: linear-gradient(135deg, var(--azul-pri) 0%, #1e40af 60%, var(--azul-sec) 100%);
+  padding: 72px 28px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-empresa::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.hero-empresa__conteudo {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero-empresa__badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #BFDBFE;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 20px;
+  margin-bottom: 22px;
+}
+
+.hero-empresa__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(32px, 5vw, 52px);
+  color: var(--branco);
+  line-height: 1.12;
+  margin-bottom: 18px;
+}
+
+.hero-empresa__destaque {
+  color: #93C5FD;
+}
+
+.hero-empresa__sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.8);
+  max-width: 580px;
+  margin: 0 auto 36px;
+  line-height: 1.75;
+}
+
+/* Passos mini no hero */
+.hero-empresa__passos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.passo-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-md);
+  padding: 10px 18px;
+  color: var(--branco);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.passo-mini__num {
+  background: var(--azul-sec);
+  color: var(--branco);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.passo-mini__seta {
+  color: rgba(255,255,255,0.4);
+  font-size: 20px;
+  font-weight: 300;
+}
+
+/* ================================================
+   MAIN EMPRESA
+   ================================================ */
+.main-empresa {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 28px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ================================================
+   STEP CARDS
+   ================================================ */
+.step-card {
+  background: var(--branco);
+  border: 1px solid var(--cinza-borda);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--sombra-card);
+}
+
+.step-card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1.5px solid var(--cinza-fraco);
+}
+
+.step-num {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  background: var(--azul-pri);
+  color: var(--branco);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  font-family: var(--fonte-titulo);
+  box-shadow: 0 4px 14px rgba(27, 58, 107, 0.3);
+}
+
+.step-card__titulo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--preto);
+  margin-bottom: 4px;
+}
+
+.step-card__desc {
+  font-size: 13.5px;
+  color: var(--cinza);
+  line-height: 1.6;
+}
+
+/* Dados da empresa */
+.empresa-dados {
+  background: var(--fundo);
+  border: 1.5px solid var(--cinza-borda);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-bottom: 24px;
+}
+
+/* ---- BOTÃO ADICIONAR ---- */
+.btn-adicionar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: 2px dashed var(--cinza-borda);
+  border-radius: var(--radius-md);
+  color: var(--cinza);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--trans);
+  font-family: var(--fonte-corpo);
+  margin-top: 4px;
+}
+
+.btn-adicionar__icone {
+  font-size: 20px;
+  color: var(--azul-sec);
+  line-height: 1;
+}
+
+.btn-adicionar:hover {
+  border-color: var(--azul-sec);
+  color: var(--azul-sec);
+  background: var(--azul-tag);
+}
+
+/* Ações do step */
+.step-acoes {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1.5px solid var(--cinza-fraco);
+}
+
+/* ================================================
+   CARDS DE VAGA
+   ================================================ */
+.vaga-card {
+  background: var(--fundo);
+  border: 1.5px solid var(--cinza-borda);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-bottom: 16px;
+  transition: border-color var(--trans);
+}
+
+.vaga-card:hover { border-color: var(--azul-sec); }
+
+.vaga-card__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.vaga-card__num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--azul-pri);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.vaga-card__rem {
+  background: none;
+  border: 1.5px solid var(--cinza-borda);
+  border-radius: var(--radius-sm);
+  color: var(--cinza-claro);
+  font-size: 11px;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: all var(--trans);
+  font-family: var(--fonte-corpo);
+  font-weight: 500;
+}
+
+.vaga-card__rem:hover {
+  border-color: var(--vermelho);
+  color: var(--vermelho);
+  background: var(--vermelho-bg);
+}
+
+/* ================================================
+   PROMPTS GERADOS
+   ================================================ */
+.prompt-card {
+  background: var(--fundo);
+  border: 1.5px solid var(--cinza-borda);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 18px;
+  transition: border-color var(--trans);
+}
+
+.prompt-card:hover { border-color: var(--azul-sec); }
+
+.prompt-card__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.prompt-card__titulo {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--preto);
+}
+
+.prompt-card__acoes {
+  display: flex;
+  gap: 8px;
+}
+
+.prompt-card__textarea {
+  width: 100%;
+  background: var(--branco);
+  border: 1.5px solid var(--cinza-borda);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-size: 12px;
+  color: var(--cinza);
+  font-family: 'Courier New', monospace;
+  line-height: 1.7;
+  resize: vertical;
+  outline: none;
+  transition: border-color var(--trans);
+  min-height: 140px;
+}
+
+.prompt-card__textarea:focus {
+  border-color: var(--azul-sec);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.btn-copiar {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--azul-tag);
+  color: var(--azul-pri);
+  border: 1.5px solid var(--azul-tag);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all var(--trans);
+  font-family: var(--fonte-corpo);
+}
+
+.btn-copiar:hover {
+  background: var(--azul-pri);
+  color: var(--branco);
+  border-color: var(--azul-pri);
+}
+
+.btn-copiar.copiado {
+  background: var(--verde-bg);
+  color: var(--verde);
+  border-color: #86EFAC;
+}
+
+/* ================================================
+   AVISO API
+   ================================================ */
+.aviso-api {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFFBEB;
+  border: 1.5px solid #FCD34D;
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  font-size: 13.5px;
+  color: #92400E;
+}
+
+.aviso-api.oculto { display: none; }
+
+.aviso-api__icone { font-size: 20px; }
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--azul-sec);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: var(--fonte-corpo);
+  padding: 0;
+}
+
+/* ================================================
+   RESULTADOS DA ANÁLISE
+   ================================================ */
+.resultado-analise {
+  margin-top: 28px;
+}
+
+.resultado-analise:empty { display: none; }
+
+.resultado-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1.5px solid var(--cinza-fraco);
+}
+
+.resultado-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--preto);
+}
+
+.badge-ia {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, var(--azul-pri), var(--azul-sec));
+  color: var(--branco);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.candidato-card {
+  background: var(--branco);
+  border: 1.5px solid var(--cinza-borda);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 14px;
+  transition: all var(--trans);
+}
+
+.candidato-card:hover {
+  border-color: var(--azul-sec);
+  box-shadow: 0 4px 20px rgba(27, 58, 107, 0.1);
+}
+
+.candidato-card--aprovado { border-left: 4px solid var(--verde); }
+.candidato-card--em-analise { border-left: 4px solid #F59E0B; }
+.candidato-card--reprovado { border-left: 4px solid var(--vermelho); }
+
+.candidato-card__topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.candidato-card__nome {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--preto);
+}
+
+.candidato-card__nota {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.nota-badge {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--azul-pri);
+  font-family: var(--fonte-titulo);
+}
+
+.status-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.status-badge--aprovado  { background: var(--verde-bg); color: var(--verde); }
+.status-badge--em-analise { background: #FFFBEB; color: #B45309; }
+.status-badge--reprovado { background: var(--vermelho-bg); color: var(--vermelho); }
+
+.candidato-card__analise {
+  font-size: 13px;
+  color: var(--cinza);
+  line-height: 1.7;
+  border-top: 1px solid var(--cinza-fraco);
+  padding-top: 10px;
+  margin-top: 2px;
+}
+
+/* Loading spinner */
+.loading-ia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 40px;
+  color: var(--cinza);
+  font-size: 14px;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--cinza-borda);
+  border-top-color: var(--azul-sec);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+.erro-ia {
+  background: var(--vermelho-bg);
+  border: 1.5px solid #FECACA;
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  font-size: 13.5px;
+  color: var(--vermelho);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+/* ================================================
+   FOOTER
+   ================================================ */
+.footer {
+  text-align: center;
+  padding: 32px 28px;
+  border-top: 1px solid var(--cinza-borda);
+  background: var(--branco);
+  color: var(--cinza);
+  font-size: 13px;
+}
+
+.footer strong { color: var(--azul-pri); font-weight: 700; }
+.footer strong a { color: var(--azul-pri); text-decoration: none; }
+.footer strong a:hover { text-decoration: underline; }
+
+.footer__sub {
+  font-size: 11px;
+  color: var(--cinza-claro);
+  margin-top: 4px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ================================================
+   RESPONSIVIDADE
+   ================================================ */
+@media (max-width: 680px) {
+  .navbar__links { display: none; }
+  .navbar__hamburger { display: flex; }
+
+  .main-empresa { padding: 28px 16px 60px; }
+  .step-card { padding: 20px 16px; }
+
+  .hero-empresa { padding: 48px 20px 44px; }
+  .hero-empresa__passos { gap: 8px; }
+  .passo-mini { padding: 8px 12px; font-size: 12px; }
+  .passo-mini__seta { display: none; }
+
+  .campo-linha { grid-template-columns: 1fr; }
+  .step-acoes { flex-direction: column; }
+  .step-acoes .btn { width: 100%; }
+  .modal__acoes { flex-direction: column-reverse; }
+  .modal__acoes .btn { width: 100%; }
+  .prompt-card__topo { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .candidato-card__topo { flex-direction: column; gap: 6px; }
+}
+
+@media (max-width: 400px) {
+  .hero-empresa__titulo { font-size: 28px; }
+  .step-card__header { flex-direction: column; gap: 10px; }
+}
+
+/* ================================================
+   GEMINI GEMS — NOVOS ELEMENTOS
+   Tech-ZL · ADS 2026
+   ================================================ */
+
+/* Card informativo do Gems (passo 3) */
+.gems-info-card {
+  background: linear-gradient(135deg, #EFF6FF 0%, #F0F4F8 100%);
+  border: 1.5px solid var(--azul-tag);
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+  overflow: hidden;
+  transition: border-color var(--trans);
+}
+
+.gems-info-card:hover { border-color: var(--azul-sec); }
+
+.gems-info-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+  gap: 12px;
+}
+
+.gems-info-card__titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--azul-pri);
+}
+
+.gems-icon { font-size: 18px; flex-shrink: 0; }
+
+.gems-info-card__toggle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--azul-sec);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color var(--trans);
+}
+
+.gems-info-card__corpo {
+  padding: 0 18px 20px;
+  border-top: 1px solid var(--azul-tag);
+}
+
+/* Passos de instrução do Gems */
+.gems-instrucoes-passo {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--cinza);
+  line-height: 1.5;
+}
+
+.gems-passo-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  background: var(--azul-pri);
+  color: var(--branco);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.gems-link {
+  color: var(--azul-sec);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.gems-link:hover { text-decoration: underline; }
+
+/* Instruções do resultado (passo 3) */
+.gems-resultado-instrucoes {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: var(--fundo);
+  border: 1.5px solid var(--cinza-borda);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.gems-passo-instrucao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--preto-soft);
+  flex: 1;
+  min-width: 140px;
+}
+
+/* Ações finais (botão Abrir Gemini) */
+.gems-acoes-finais {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.gems-btn-abrir {
+  background: linear-gradient(135deg, #1B3A6B, #2563EB);
+  border: none;
+  letter-spacing: 0.02em;
+}
+
+.gems-btn-abrir:hover {
+  background: linear-gradient(135deg, #142B52, #1B3A6B);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 58, 107, 0.42);
+}
+
+/* Responsividade dos novos elementos */
+@media (max-width: 680px) {
+  .gems-resultado-instrucoes { flex-direction: column; gap: 10px; }
+  .gems-acoes-finais { flex-direction: column; }
+  .gems-acoes-finais .btn { width: 100%; justify-content: center; }
+  .gems-info-card__header { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
+
+==============================================================================
+ARQUIVO: empresa.js  (577 linhas)
+==============================================================================
+// ================================================
+//   PROCESSO SELETIVO COM GEMINI GEMS — TECH-ZL · ADS 2026
+//   empresa.js — Lógica completa da página Para Empresas
+//   Integração: Gemini Gems (gratuito, sem API key)
+// ================================================
+
+// ---- ESTADO ----
+let vagas        = [];
+let contVaga     = 0;
+let vagaReqTexto = {}; // guarda o texto de requisitos por vaga.id
+
+// ---- PROMPT DO AGENTE GEMS ----
+const GEMS_AGENT_PROMPT = `Você é um Agente Especialista em Recrutamento e Seleção de Talentos.
+
+Sua missão é analisar currículos de candidatos com base nos requisitos técnicos de vagas fornecidos, de forma objetiva, profissional e 100% imparcial.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FLUXO DE TRABALHO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ETAPA 1 — AO RECEBER OS REQUISITOS DA VAGA:
+Quando receber os requisitos técnicos de uma vaga, confirme que os leu e SOLICITE ao recrutador que cole os currículos dos candidatos para análise. Aguarde o envio antes de prosseguir.
+
+Modelo de resposta ao receber os requisitos:
+"✅ Requisitos da vaga [TÍTULO DA VAGA] recebidos e registrados!
+Agora cole os currículos dos candidatos para que eu inicie a triagem.
+Para múltiplos candidatos, separe cada currículo com uma linha '---'."
+
+ETAPA 2 — AO RECEBER OS CURRÍCULOS:
+Após receber os currículos, analise cada candidato individualmente e de forma justa.
+Para cada candidato, gere obrigatoriamente a análise no formato abaixo:
+
+━━━ ANÁLISE DO CANDIDATO ━━━
+Nome do Candidato: [nome completo ou "Candidato X" se não identificado]
+Pontuação: [número de 0 a 10] / 10
+Compatibilidade: [porcentagem estimada de requisitos atendidos]
+Status: [APROVADO ✅ | EM ANÁLISE ⚠️ | NÃO RECOMENDADO ❌]
+Pontos fortes: [lista dos principais pontos positivos em relação à vaga]
+Pontos de atenção: [lacunas, requisitos não atendidos ou pontos negativos]
+Recomendação: [texto objetivo com sua recomendação final]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Ao finalizar todos os candidatos, apresente um RANKING FINAL do mais ao menos recomendado para a vaga.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CRITÉRIOS DE CLASSIFICAÇÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ APROVADO (Pontuação ≥ 7/10)
+   Candidato atende aos requisitos principais e é recomendado para entrevista.
+
+⚠️ EM ANÁLISE (Pontuação entre 4 e 6/10)
+   Candidato tem potencial, mas apresenta lacunas relevantes. Considerar entrevista.
+
+❌ NÃO RECOMENDADO (Pontuação ≤ 3/10)
+   Candidato não atende aos requisitos mínimos da vaga no momento.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+REGRAS OBRIGATÓRIAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• SEMPRE solicite os currículos se ainda não foram fornecidos — não inicie análise sem eles
+• Analise APENAS com base nas informações fornecidas nos currículos
+• Não faça suposições ou inferências sem embasamento nos dados
+• Seja objetivo, profissional e use linguagem clara
+• Mantenha postura ética, justa e sem viés de nenhum tipo
+• Sempre responda em português do Brasil
+• Separe a análise de cada candidato com uma linha de "---"
+• Nunca invente informações que não estejam no currículo
+
+Você está pronto para receber os requisitos da vaga.`;
+
+// ---- BOOT ----
+document.addEventListener('DOMContentLoaded', () => {
+  initNavbar();
+  adicionarVaga(); // já inicia com 1 vaga em branco
+  preencherGemsPrompt();
+});
+
+// ================================================
+//   PREENCHER PROMPT DO AGENTE GEMS NA TEXTAREA
+// ================================================
+function preencherGemsPrompt() {
+  const ta = document.getElementById('gems-agent-prompt');
+  if (ta) ta.value = GEMS_AGENT_PROMPT;
+}
+
+// ================================================
+//   NAVBAR HAMBURGER
+// ================================================
+function initNavbar() {
+  const hb   = document.getElementById('hamburger');
+  const menu = document.getElementById('mobile-menu');
+  if (hb && menu) {
+    hb.addEventListener('click', () => menu.classList.toggle('aberto'));
+  }
+}
+
+function fecharMenu() {
+  document.getElementById('mobile-menu')?.classList.remove('aberto');
+}
+
+// ================================================
+//   TOGGLE: EXIBIR/OCULTAR PROMPT GEMS
+// ================================================
+function toggleGemsPrompt() {
+  const corpo  = document.getElementById('gems-prompt-corpo');
+  const label  = document.getElementById('gems-toggle-label');
+  if (!corpo) return;
+  const aberto = corpo.style.display !== 'none';
+  corpo.style.display = aberto ? 'none' : 'block';
+  if (label) label.textContent = aberto ? '▼ Expandir' : '▲ Recolher';
+}
+
+// ================================================
+//   VAGAS — CRUD
+// ================================================
+function adicionarVaga(titulo = '', area = '', requisitos = '', descricao = '', nivel = '') {
+  contVaga++;
+  vagas.push({
+    id: 'vaga-' + contVaga,
+    titulo,
+    area,
+    requisitos,
+    descricao,
+    nivel
+  });
+  renderizarVagas();
+}
+
+function removerVaga(id) {
+  if (vagas.length <= 1) {
+    mostrarToast('Mantenha pelo menos uma vaga cadastrada.', 'erro');
+    return;
+  }
+  vagas = vagas.filter(v => v.id !== id);
+  renderizarVagas();
+}
+
+function atualizarVaga(id, campo, valor) {
+  const item = vagas.find(v => v.id === id);
+  if (item) item[campo] = valor;
+}
+
+function renderizarVagas() {
+  const container = document.getElementById('lista-vagas');
+  if (!container) return;
+  container.innerHTML = '';
+
+  vagas.forEach((vaga, i) => {
+    const card = document.createElement('div');
+    card.className = 'vaga-card';
+    card.innerHTML = `
+      <div class="vaga-card__topo">
+        <span class="vaga-card__num">Vaga ${i + 1}</span>
+        <button class="vaga-card__rem" onclick="removerVaga('${vaga.id}')">Remover</button>
+      </div>
+      <div class="campo-linha">
+        <div class="campo">
+          <label>Título da vaga <span class="obrig">*</span></label>
+          <input type="text" value="${esc(vaga.titulo)}"
+            oninput="atualizarVaga('${vaga.id}', 'titulo', this.value)"
+            placeholder="Ex: Desenvolvedor Front-End" />
+        </div>
+        <div class="campo">
+          <label>Área / Departamento</label>
+          <input type="text" value="${esc(vaga.area)}"
+            oninput="atualizarVaga('${vaga.id}', 'area', this.value)"
+            placeholder="Ex: Tecnologia, RH, Financeiro" />
+        </div>
+      </div>
+      <div class="campo-linha">
+        <div class="campo">
+          <label>Nível de experiência</label>
+          <select onchange="atualizarVaga('${vaga.id}', 'nivel', this.value)">
+            <option value="" ${!vaga.nivel ? 'selected' : ''}>Selecione...</option>
+            <option value="Estágio"       ${vaga.nivel === 'Estágio'       ? 'selected' : ''}>Estágio</option>
+            <option value="Júnior"        ${vaga.nivel === 'Júnior'        ? 'selected' : ''}>Júnior</option>
+            <option value="Pleno"         ${vaga.nivel === 'Pleno'         ? 'selected' : ''}>Pleno</option>
+            <option value="Sênior"        ${vaga.nivel === 'Sênior'        ? 'selected' : ''}>Sênior</option>
+            <option value="Especialista"  ${vaga.nivel === 'Especialista'  ? 'selected' : ''}>Especialista</option>
+            <option value="Gerencial"     ${vaga.nivel === 'Gerencial'     ? 'selected' : ''}>Gerencial</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label>Requisitos técnicos <small>(separados por vírgula)</small></label>
+          <input type="text" value="${esc(vaga.requisitos)}"
+            oninput="atualizarVaga('${vaga.id}', 'requisitos', this.value)"
+            placeholder="JavaScript, React, Git, inglês intermediário" />
+        </div>
+      </div>
+      <div class="campo">
+        <label>Descrição da vaga / Responsabilidades</label>
+        <textarea rows="3"
+          oninput="atualizarVaga('${vaga.id}', 'descricao', this.value)"
+          placeholder="Descreva as principais atividades, responsabilidades e benefícios da vaga...">${esc(vaga.descricao)}</textarea>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// ================================================
+//   PASSO 1 → 2: GERAR REQUISITOS TÉCNICOS
+// ================================================
+function gerarRequisitos() {
+  const nomeEmpresa  = document.getElementById('nome-empresa')?.value.trim() || 'a empresa';
+  const setorEmpresa = document.getElementById('setor-empresa')?.value.trim() || '';
+
+  const vagasValidas = vagas.filter(v => v.titulo.trim());
+  if (vagasValidas.length === 0) {
+    mostrarToast('Preencha o título de pelo menos uma vaga antes de continuar.', 'erro');
+    return;
+  }
+
+  const container = document.getElementById('lista-prompts');
+  if (!container) return;
+  container.innerHTML = '';
+
+  // Limpa requisitos anteriores
+  vagaReqTexto = {};
+
+  vagasValidas.forEach((vaga, i) => {
+    const textoReq = gerarTextoRequisitos(vaga, nomeEmpresa, setorEmpresa);
+    // Guarda para uso no passo 3
+    vagaReqTexto[vaga.id] = textoReq;
+
+    const card = document.createElement('div');
+    card.className = 'prompt-card';
+    card.innerHTML = `
+      <div class="prompt-card__topo">
+        <span class="prompt-card__titulo">📄 Vaga ${i + 1}: ${esc(vaga.titulo)}${vaga.nivel ? ' — ' + esc(vaga.nivel) : ''}</span>
+        <div class="prompt-card__acoes">
+          <button class="btn-copiar" onclick="copiarPrompt(this, 'req-txt-${vaga.id}')">📋 Copiar</button>
+        </div>
+      </div>
+      <textarea
+        id="req-txt-${vaga.id}"
+        class="prompt-card__textarea"
+        rows="10"
+        spellcheck="false"
+        readonly
+      >${esc(textoReq)}</textarea>
+    `;
+    container.appendChild(card);
+  });
+
+  // Popular select da triagem (passo 3)
+  const select = document.getElementById('select-vaga-analise');
+  if (select) {
+    select.innerHTML = '<option value="">Selecione uma vaga...</option>';
+    vagasValidas.forEach((vaga, i) => {
+      const opt = document.createElement('option');
+      opt.value = vaga.id;
+      opt.textContent = `Vaga ${i + 1}: ${vaga.titulo}${vaga.nivel ? ' — ' + vaga.nivel : ''}`;
+      select.appendChild(opt);
+    });
+  }
+
+  // Mostrar passo 2
+  document.getElementById('passo-1').style.display = 'none';
+  const p2 = document.getElementById('passo-2');
+  p2.style.display = 'block';
+  setTimeout(() => p2.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+}
+
+// ================================================
+//   GERAR TEXTO DE REQUISITOS TÉCNICOS
+// ================================================
+function gerarTextoRequisitos(vaga, empresa, setor) {
+  const setorTexto = setor ? ` | Setor: ${setor}` : '';
+  const nivel      = vaga.nivel     ? vaga.nivel     : 'Não especificado';
+  const area       = vaga.area      ? vaga.area      : 'Não especificada';
+  const data       = new Date().toLocaleDateString('pt-BR');
+
+  // Requisitos como lista com bullet
+  const reqLista = vaga.requisitos
+    ? vaga.requisitos
+        .split(',')
+        .map(r => r.trim())
+        .filter(Boolean)
+        .map(r => `  • ${r}`)
+        .join('\n')
+    : '  • (Não informado)';
+
+  const descricao = vaga.descricao
+    ? vaga.descricao.trim()
+    : '(Não informada)';
+
+  return `╔══════════════════════════════════════════════════════╗
+  REQUISITOS TÉCNICOS DA VAGA
+  ${empresa}${setorTexto}
+  Gerado em: ${data} | Tech-ZL · ADS 2026
+╚══════════════════════════════════════════════════════╝
+
+▶ CARGO          : ${vaga.titulo}
+▶ NÍVEL          : ${nivel}
+▶ ÁREA           : ${area}
+
+━━━ REQUISITOS TÉCNICOS OBRIGATÓRIOS ━━━
+${reqLista}
+
+━━━ RESPONSABILIDADES E ATIVIDADES ━━━
+${descricao}
+
+━━━ CRITÉRIOS DE AVALIAÇÃO ━━━
+  ✅ APROVADO       — Atende ≥ 70% dos requisitos acima
+  ⚠️ EM ANÁLISE     — Atende entre 40% e 69% dos requisitos
+  ❌ NÃO RECOMENDADO — Atende menos de 40% dos requisitos
+
+━━━ INSTRUÇÕES PARA O AGENTE GEMS ━━━
+Para cada candidato analisado, forneça:
+  1. Nome do candidato
+  2. Pontuação de 0 a 10
+  3. Status: APROVADO | EM ANÁLISE | NÃO RECOMENDADO
+  4. Pontos fortes em relação a esta vaga
+  5. Pontos de atenção / lacunas
+  6. Recomendação final objetiva`;
+}
+
+// ================================================
+//   NAVEGAÇÃO ENTRE PASSOS
+// ================================================
+function voltarPasso1() {
+  document.getElementById('passo-2').style.display = 'none';
+  const p1 = document.getElementById('passo-1');
+  p1.style.display = 'block';
+  setTimeout(() => p1.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+}
+
+function irParaPasso3() {
+  document.getElementById('passo-2').style.display = 'none';
+  const p3 = document.getElementById('passo-3');
+  p3.style.display = 'block';
+  // Limpar resultado anterior
+  const resultado = document.getElementById('resultado-analise');
+  if (resultado) resultado.innerHTML = '';
+  setTimeout(() => p3.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+}
+
+function voltarPasso2() {
+  document.getElementById('passo-3').style.display = 'none';
+  const p2 = document.getElementById('passo-2');
+  p2.style.display = 'block';
+  setTimeout(() => p2.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+}
+
+// ================================================
+//   MOSTRAR REQUISITOS DA VAGA SELECIONADA
+// ================================================
+function mostrarRequisitosSelecionados() {
+  const vagaId  = document.getElementById('select-vaga-analise')?.value;
+  const bloco   = document.getElementById('bloco-requisitos-preview');
+  const preview = document.getElementById('requisitos-preview');
+
+  if (!vagaId || !bloco || !preview) {
+    if (bloco) bloco.style.display = 'none';
+    return;
+  }
+
+  const texto = vagaReqTexto[vagaId];
+  if (texto) {
+    preview.value      = texto;
+    bloco.style.display = 'block';
+  } else {
+    bloco.style.display = 'none';
+  }
+
+  // Limpar resultado anterior ao trocar de vaga
+  const resultado = document.getElementById('resultado-analise');
+  if (resultado) resultado.innerHTML = '';
+}
+
+// ================================================
+//   PASSO 3: PREPARAR MENSAGEM PARA O GEMS
+//   — O site envia apenas os requisitos.
+//   — O agente Gems solicitará os currículos no chat.
+// ================================================
+function prepararParaGemini() {
+  const vagaId = document.getElementById('select-vaga-analise')?.value;
+
+  if (!vagaId) {
+    mostrarToast('Selecione uma vaga para o processo seletivo.', 'erro');
+    return;
+  }
+
+  const vaga = vagas.find(v => v.id === vagaId);
+  if (!vaga) {
+    mostrarToast('Vaga não encontrada. Volte ao Passo 1.', 'erro');
+    return;
+  }
+
+  const nomeEmpresa  = document.getElementById('nome-empresa')?.value.trim() || 'a empresa';
+  const setorEmpresa = document.getElementById('setor-empresa')?.value.trim() || '';
+  const requisitos   = vagaReqTexto[vagaId] || gerarTextoRequisitos(vaga, nomeEmpresa, setorEmpresa);
+
+  const mensagem = gerarMensagemGemini(vaga, nomeEmpresa, setorEmpresa, requisitos);
+  renderizarMensagemGemini(mensagem, vaga);
+}
+
+// ================================================
+//   GERAR MENSAGEM DE REQUISITOS PARA O GEMS
+//   — Apenas os requisitos técnicos da vaga.
+//   — O agente pedirá os currículos no chat.
+// ================================================
+function gerarMensagemGemini(vaga, empresa, setor, requisitos) {
+  const setorTexto = setor ? ` (${setor})` : '';
+  return `[INÍCIO DO PROCESSO SELETIVO — ${vaga.titulo.toUpperCase()} | ${empresa}${setorTexto}]
+
+${requisitos}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Esses são os requisitos técnicos da vaga acima.
+Por favor, confirme o recebimento e solicite os currículos dos candidatos para iniciar a triagem.`;
+}
+
+// ================================================
+//   RENDERIZAR MENSAGEM PARA O GEMS
+// ================================================
+function renderizarMensagemGemini(mensagem, vaga) {
+  const resultadoDiv = document.getElementById('resultado-analise');
+  if (!resultadoDiv) return;
+
+  const msgId = 'msg-gems-' + vaga.id;
+
+  resultadoDiv.innerHTML = `
+    <div class="resultado-header">
+      <h3>Mensagem pronta para o Agente Gems</h3>
+      <span class="badge-ia">💎 Gems</span>
+    </div>
+
+    <div class="gems-resultado-instrucoes">
+      <div class="gems-passo-instrucao">
+        <span class="gems-passo-num">1</span>
+        <span>Copie os requisitos abaixo</span>
+      </div>
+      <div class="gems-passo-instrucao">
+        <span class="gems-passo-num">2</span>
+        <span>Abra seu Agente Gems no Gemini e cole no chat</span>
+      </div>
+      <div class="gems-passo-instrucao">
+        <span class="gems-passo-num">3</span>
+        <span>O Gems confirmará os requisitos e pedirá os currículos — cole-os diretamente no chat do agente</span>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-card__topo">
+        <span class="prompt-card__titulo">📋 Requisitos para o Gems — ${esc(vaga.titulo)}</span>
+        <div class="prompt-card__acoes">
+          <button class="btn-copiar" onclick="copiarPrompt(this, '${msgId}')">📋 Copiar mensagem</button>
+        </div>
+      </div>
+      <textarea
+        id="${msgId}"
+        class="prompt-card__textarea"
+        rows="16"
+        spellcheck="false"
+        readonly
+      >${esc(mensagem)}</textarea>
+    </div>
+
+    <div class="gems-acoes-finais">
+      <a
+        href="https://gemini.google.com/app"
+        target="_blank"
+        class="btn btn--primary btn--lg gems-btn-abrir"
+      >
+        💎 Abrir Gemini Gems →
+      </a>
+      <a
+        href="https://gemini.google.com/gems/create"
+        target="_blank"
+        class="btn btn--outline"
+      >
+        + Criar novo Agente Gems
+      </a>
+    </div>
+  `;
+
+  setTimeout(() => resultadoDiv.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+}
+
+// ================================================
+//   COPIAR PROMPT
+// ================================================
+function copiarPrompt(btn, textareaId) {
+  const ta = document.getElementById(textareaId);
+  if (!ta) return;
+
+  navigator.clipboard.writeText(ta.value).then(() => {
+    btn.textContent = '✅ Copiado!';
+    btn.classList.add('copiado');
+    setTimeout(() => {
+      btn.textContent = '📋 Copiar';
+      btn.classList.remove('copiado');
+    }, 2000);
+  }).catch(() => {
+    // Fallback para browsers antigos
+    ta.select();
+    document.execCommand('copy');
+    btn.textContent = '✅ Copiado!';
+    setTimeout(() => { btn.textContent = '📋 Copiar'; }, 2000);
+  });
+}
+
+// ================================================
+//   LIMPAR TUDO
+// ================================================
+function limparTudo() {
+  if (!confirm('Tem certeza que deseja limpar todos os dados?')) return;
+
+  vagas        = [];
+  contVaga     = 0;
+  vagaReqTexto = {};
+
+  const nomeEmp  = document.getElementById('nome-empresa');
+  const setorEmp = document.getElementById('setor-empresa');
+  if (nomeEmp)  nomeEmp.value  = '';
+  if (setorEmp) setorEmp.value = '';
+
+  const resultadoDiv = document.getElementById('resultado-analise');
+  if (resultadoDiv) resultadoDiv.innerHTML = '';
+
+  // Voltar ao passo 1
+  document.getElementById('passo-2').style.display = 'none';
+  document.getElementById('passo-3').style.display = 'none';
+  document.getElementById('passo-1').style.display = 'block';
+
+  adicionarVaga();
+  mostrarToast('Dados limpos com sucesso.', 'ok');
+}
+
+// ================================================
+//   TOAST NOTIFICATIONS
+// ================================================
+function mostrarToast(msg, tipo = 'ok') {
+  document.querySelector('.toast-notif')?.remove();
+
+  const toast = document.createElement('div');
+  toast.className = 'toast-notif';
+  toast.textContent = msg;
+
+  Object.assign(toast.style, {
+    position:     'fixed',
+    bottom:       '28px',
+    right:        '24px',
+    zIndex:       '9999',
+    background:   tipo === 'ok' ? '#1B3A6B' : '#DC2626',
+    color:        '#fff',
+    padding:      '12px 20px',
+    borderRadius: '8px',
+    fontSize:     '13.5px',
+    fontWeight:   '600',
+    boxShadow:    '0 4px 20px rgba(0,0,0,.2)',
+    transition:   'opacity .3s',
+    fontFamily:   "'Inter', sans-serif",
+    maxWidth:     '320px'
+  });
+
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    setTimeout(() => toast.remove(), 350);
+  }, 3000);
+}
+
+// ================================================
+//   UTILITÁRIOS
+// ================================================
+function esc(str) {
+  return (str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+

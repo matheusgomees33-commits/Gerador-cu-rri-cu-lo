@@ -1,7 +1,7 @@
 
 # Gerador-curriculo
 Projeto da faculdade 
-# Gerador de Currículo · Tech-ZL (ADS 2026)
+# Gerador de Currículo · projeto focado em auxiliar pessoas a montarem seus currículos 
 
 Aplicação web **estática** (HTML, CSS e JavaScript puros, sem build) para montar um currículo profissional com **pré-visualização em tempo real** e exportá-lo em **PDF** ou **HTML**. O projeto também inclui um módulo para empresas que organiza os requisitos das vagas e prepara o material para um processo seletivo no **Gemini Gems**.
 
